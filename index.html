@@ -1,0 +1,1500 @@
+<html class="dark"><head>
+    <meta charset="UTF-8">
+    <title>Hostel</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <link rel="stylesheet" href="./app.css">
+    <link rel="stylesheet" href="./style.css">
+  </head>
+  <body>
+  <script src="./script.js"></script>
+
+<main id="app"></main><script>document.getElementById('app').innerHTML=''</script><!---->
+
+
+<style></style>
+<script>(() => {
+  // node_modules/.pnpm/svelte@4.2.18/node_modules/svelte/src/runtime/internal/utils.js
+  function noop() {
+  }
+  function assign(tar, src) {
+    for (const k in src)
+      tar[k] = src[k];
+    return (
+      /** @type {T & S} */
+      tar
+    );
+  }
+  function run(fn) {
+    return fn();
+  }
+  function blank_object() {
+    return /* @__PURE__ */ Object.create(null);
+  }
+  function run_all(fns) {
+    fns.forEach(run);
+  }
+  function is_function(thing) {
+    return typeof thing === "function";
+  }
+  function safe_not_equal(a, b) {
+    return a != a ? b == b : a !== b || a && typeof a === "object" || typeof a === "function";
+  }
+  function is_empty(obj) {
+    return Object.keys(obj).length === 0;
+  }
+  function create_slot(definition, ctx, $scope, fn) {
+    if (definition) {
+      const slot_ctx = get_slot_context(definition, ctx, $scope, fn);
+      return definition[0](slot_ctx);
+    }
+  }
+  function get_slot_context(definition, ctx, $scope, fn) {
+    return definition[1] && fn ? assign($scope.ctx.slice(), definition[1](fn(ctx))) : $scope.ctx;
+  }
+  function get_slot_changes(definition, $scope, dirty, fn) {
+    if (definition[2] && fn) {
+      const lets = definition[2](fn(dirty));
+      if ($scope.dirty === void 0) {
+        return lets;
+      }
+      if (typeof lets === "object") {
+        const merged = [];
+        const len = Math.max($scope.dirty.length, lets.length);
+        for (let i = 0; i < len; i += 1) {
+          merged[i] = $scope.dirty[i] | lets[i];
+        }
+        return merged;
+      }
+      return $scope.dirty | lets;
+    }
+    return $scope.dirty;
+  }
+  function update_slot_base(slot, slot_definition, ctx, $scope, slot_changes, get_slot_context_fn) {
+    if (slot_changes) {
+      const slot_context = get_slot_context(slot_definition, ctx, $scope, get_slot_context_fn);
+      slot.p(slot_context, slot_changes);
+    }
+  }
+  function get_all_dirty_from_scope($scope) {
+    if ($scope.ctx.length > 32) {
+      const dirty = [];
+      const length = $scope.ctx.length / 32;
+      for (let i = 0; i < length; i++) {
+        dirty[i] = -1;
+      }
+      return dirty;
+    }
+    return -1;
+  }
+
+  // node_modules/.pnpm/svelte@4.2.18/node_modules/svelte/src/runtime/internal/globals.js
+  var globals = typeof window !== "undefined" ? window : typeof globalThis !== "undefined" ? globalThis : (
+    // @ts-ignore Node typings have this
+    global
+  );
+
+  // node_modules/.pnpm/svelte@4.2.18/node_modules/svelte/src/runtime/internal/ResizeObserverSingleton.js
+  var ResizeObserverSingleton = class {
+    /**
+     * @private
+     * @readonly
+     * @type {WeakMap<Element, import('./private.js').Listener>}
+     */
+    _listeners = "WeakMap" in globals ? /* @__PURE__ */ new WeakMap() : void 0;
+    /**
+     * @private
+     * @type {ResizeObserver}
+     */
+    _observer = void 0;
+    /** @type {ResizeObserverOptions} */
+    options;
+    /** @param {ResizeObserverOptions} options */
+    constructor(options) {
+      this.options = options;
+    }
+    /**
+     * @param {Element} element
+     * @param {import('./private.js').Listener} listener
+     * @returns {() => void}
+     */
+    observe(element2, listener) {
+      this._listeners.set(element2, listener);
+      this._getObserver().observe(element2, this.options);
+      return () => {
+        this._listeners.delete(element2);
+        this._observer.unobserve(element2);
+      };
+    }
+    /**
+     * @private
+     */
+    _getObserver() {
+      return this._observer ?? (this._observer = new ResizeObserver((entries) => {
+        for (const entry of entries) {
+          ResizeObserverSingleton.entries.set(entry.target, entry);
+          this._listeners.get(entry.target)?.(entry);
+        }
+      }));
+    }
+  };
+  ResizeObserverSingleton.entries = "WeakMap" in globals ? /* @__PURE__ */ new WeakMap() : void 0;
+
+  // node_modules/.pnpm/svelte@4.2.18/node_modules/svelte/src/runtime/internal/dom.js
+  var is_hydrating = false;
+  function start_hydrating() {
+    is_hydrating = true;
+  }
+  function end_hydrating() {
+    is_hydrating = false;
+  }
+  function append(target, node) {
+    target.appendChild(node);
+  }
+  function insert(target, node, anchor) {
+    target.insertBefore(node, anchor || null);
+  }
+  function detach(node) {
+    if (node.parentNode) {
+      node.parentNode.removeChild(node);
+    }
+  }
+  function element(name) {
+    return document.createElement(name);
+  }
+  function text(data) {
+    return document.createTextNode(data);
+  }
+  function space() {
+    return text(" ");
+  }
+  function comment(content) {
+    return document.createComment(content);
+  }
+  function listen(node, event, handler, options) {
+    node.addEventListener(event, handler, options);
+    return () => node.removeEventListener(event, handler, options);
+  }
+  function attr(node, attribute, value) {
+    if (value == null)
+      node.removeAttribute(attribute);
+    else if (node.getAttribute(attribute) !== value)
+      node.setAttribute(attribute, value);
+  }
+  function children(element2) {
+    return Array.from(element2.childNodes);
+  }
+  function get_custom_elements_slots(element2) {
+    const result = {};
+    element2.childNodes.forEach(
+      /** @param {Element} node */
+      (node) => {
+        result[node.slot || "default"] = true;
+      }
+    );
+    return result;
+  }
+
+  // node_modules/.pnpm/svelte@4.2.18/node_modules/svelte/src/runtime/internal/lifecycle.js
+  var current_component;
+  function set_current_component(component) {
+    current_component = component;
+  }
+  function get_current_component() {
+    if (!current_component)
+      throw new Error("Function called outside component initialization");
+    return current_component;
+  }
+  function onMount(fn) {
+    get_current_component().$.on_mount.push(fn);
+  }
+
+  // node_modules/.pnpm/svelte@4.2.18/node_modules/svelte/src/runtime/internal/scheduler.js
+  var dirty_components = [];
+  var binding_callbacks = [];
+  var render_callbacks = [];
+  var flush_callbacks = [];
+  var resolved_promise = /* @__PURE__ */ Promise.resolve();
+  var update_scheduled = false;
+  function schedule_update() {
+    if (!update_scheduled) {
+      update_scheduled = true;
+      resolved_promise.then(flush);
+    }
+  }
+  function add_render_callback(fn) {
+    render_callbacks.push(fn);
+  }
+  var seen_callbacks = /* @__PURE__ */ new Set();
+  var flushidx = 0;
+  function flush() {
+    if (flushidx !== 0) {
+      return;
+    }
+    const saved_component = current_component;
+    do {
+      try {
+        while (flushidx < dirty_components.length) {
+          const component = dirty_components[flushidx];
+          flushidx++;
+          set_current_component(component);
+          update(component.$);
+        }
+      } catch (e) {
+        dirty_components.length = 0;
+        flushidx = 0;
+        throw e;
+      }
+      set_current_component(null);
+      dirty_components.length = 0;
+      flushidx = 0;
+      while (binding_callbacks.length)
+        binding_callbacks.pop()();
+      for (let i = 0; i < render_callbacks.length; i += 1) {
+        const callback = render_callbacks[i];
+        if (!seen_callbacks.has(callback)) {
+          seen_callbacks.add(callback);
+          callback();
+        }
+      }
+      render_callbacks.length = 0;
+    } while (dirty_components.length);
+    while (flush_callbacks.length) {
+      flush_callbacks.pop()();
+    }
+    update_scheduled = false;
+    seen_callbacks.clear();
+    set_current_component(saved_component);
+  }
+  function update($) {
+    if ($.fragment !== null) {
+      $.update();
+      run_all($.before_update);
+      const dirty = $.dirty;
+      $.dirty = [-1];
+      $.fragment && $.fragment.p($.ctx, dirty);
+      $.after_update.forEach(add_render_callback);
+    }
+  }
+  function flush_render_callbacks(fns) {
+    const filtered = [];
+    const targets = [];
+    render_callbacks.forEach((c) => fns.indexOf(c) === -1 ? filtered.push(c) : targets.push(c));
+    targets.forEach((c) => c());
+    render_callbacks = filtered;
+  }
+
+  // node_modules/.pnpm/svelte@4.2.18/node_modules/svelte/src/runtime/internal/transitions.js
+  var outroing = /* @__PURE__ */ new Set();
+  var outros;
+  function transition_in(block, local) {
+    if (block && block.i) {
+      outroing.delete(block);
+      block.i(local);
+    }
+  }
+  function transition_out(block, local, detach2, callback) {
+    if (block && block.o) {
+      if (outroing.has(block))
+        return;
+      outroing.add(block);
+      outros.c.push(() => {
+        outroing.delete(block);
+        if (callback) {
+          if (detach2)
+            block.d(1);
+          callback();
+        }
+      });
+      block.o(local);
+    } else if (callback) {
+      callback();
+    }
+  }
+
+  // node_modules/.pnpm/svelte@4.2.18/node_modules/svelte/src/shared/boolean_attributes.js
+  var _boolean_attributes = (
+    /** @type {const} */
+    [
+      "allowfullscreen",
+      "allowpaymentrequest",
+      "async",
+      "autofocus",
+      "autoplay",
+      "checked",
+      "controls",
+      "default",
+      "defer",
+      "disabled",
+      "formnovalidate",
+      "hidden",
+      "inert",
+      "ismap",
+      "loop",
+      "multiple",
+      "muted",
+      "nomodule",
+      "novalidate",
+      "open",
+      "playsinline",
+      "readonly",
+      "required",
+      "reversed",
+      "selected"
+    ]
+  );
+  var boolean_attributes = /* @__PURE__ */ new Set([..._boolean_attributes]);
+
+  // node_modules/.pnpm/svelte@4.2.18/node_modules/svelte/src/runtime/internal/Component.js
+  function create_component(block) {
+    block && block.c();
+  }
+  function mount_component(component, target, anchor) {
+    const { fragment, after_update } = component.$;
+    fragment && fragment.m(target, anchor);
+    add_render_callback(() => {
+      const new_on_destroy = component.$.on_mount.map(run).filter(is_function);
+      if (component.$.on_destroy) {
+        component.$.on_destroy.push(...new_on_destroy);
+      } else {
+        run_all(new_on_destroy);
+      }
+      component.$.on_mount = [];
+    });
+    after_update.forEach(add_render_callback);
+  }
+  function destroy_component(component, detaching) {
+    const $ = component.$;
+    if ($.fragment !== null) {
+      flush_render_callbacks($.after_update);
+      run_all($.on_destroy);
+      $.fragment && $.fragment.d(detaching);
+      $.on_destroy = $.fragment = null;
+      $.ctx = [];
+    }
+  }
+  function make_dirty(component, i) {
+    if (component.$.dirty[0] === -1) {
+      dirty_components.push(component);
+      schedule_update();
+      component.$.dirty.fill(0);
+    }
+    component.$.dirty[i / 31 | 0] |= 1 << i % 31;
+  }
+  function init(component, options, instance4, create_fragment8, not_equal, props, append_styles = null, dirty = [-1]) {
+    const parent_component = current_component;
+    set_current_component(component);
+    const $ = component.$ = {
+      fragment: null,
+      ctx: [],
+      // state
+      props,
+      update: noop,
+      not_equal,
+      bound: blank_object(),
+      // lifecycle
+      on_mount: [],
+      on_destroy: [],
+      on_disconnect: [],
+      before_update: [],
+      after_update: [],
+      context: new Map(options.context || (parent_component ? parent_component.$.context : [])),
+      // everything else
+      callbacks: blank_object(),
+      dirty,
+      skip_bound: false,
+      root: options.target || parent_component.$.root
+    };
+    append_styles && append_styles($.root);
+    let ready = false;
+    $.ctx = instance4 ? instance4(component, options.props || {}, (i, ret, ...rest) => {
+      const value = rest.length ? rest[0] : ret;
+      if ($.ctx && not_equal($.ctx[i], $.ctx[i] = value)) {
+        if (!$.skip_bound && $.bound[i])
+          $.bound[i](value);
+        if (ready)
+          make_dirty(component, i);
+      }
+      return ret;
+    }) : [];
+    $.update();
+    ready = true;
+    run_all($.before_update);
+    $.fragment = create_fragment8 ? create_fragment8($.ctx) : false;
+    if (options.target) {
+      if (options.hydrate) {
+        start_hydrating();
+        const nodes = children(options.target);
+        $.fragment && $.fragment.l(nodes);
+        nodes.forEach(detach);
+      } else {
+        $.fragment && $.fragment.c();
+      }
+      if (options.intro)
+        transition_in(component.$.fragment);
+      mount_component(component, options.target, options.anchor);
+      end_hydrating();
+      flush();
+    }
+    set_current_component(parent_component);
+  }
+  var SvelteElement;
+  if (typeof HTMLElement === "function") {
+    SvelteElement = class extends HTMLElement {
+      /** The Svelte component constructor */
+      $ctor;
+      /** Slots */
+      $s;
+      /** The Svelte component instance */
+      $c;
+      /** Whether or not the custom element is connected */
+      $cn = false;
+      /** Component props data */
+      $d = {};
+      /** `true` if currently in the process of reflecting component props back to attributes */
+      $r = false;
+      /** @type {Record<string, CustomElementPropDefinition>} Props definition (name, reflected, type etc) */
+      $p_d = {};
+      /** @type {Record<string, Function[]>} Event listeners */
+      $l = {};
+      /** @type {Map<Function, Function>} Event listener unsubscribe functions */
+      $l_u = /* @__PURE__ */ new Map();
+      constructor($componentCtor, $slots, use_shadow_dom) {
+        super();
+        this.$ctor = $componentCtor;
+        this.$s = $slots;
+        if (use_shadow_dom) {
+          this.attachShadow({ mode: "open" });
+        }
+      }
+      addEventListener(type, listener, options) {
+        this.$l[type] = this.$l[type] || [];
+        this.$l[type].push(listener);
+        if (this.$c) {
+          const unsub = this.$c.$on(type, listener);
+          this.$l_u.set(listener, unsub);
+        }
+        super.addEventListener(type, listener, options);
+      }
+      removeEventListener(type, listener, options) {
+        super.removeEventListener(type, listener, options);
+        if (this.$c) {
+          const unsub = this.$l_u.get(listener);
+          if (unsub) {
+            unsub();
+            this.$l_u.delete(listener);
+          }
+        }
+      }
+      async connectedCallback() {
+        this.$cn = true;
+        if (!this.$c) {
+          let create_slot2 = function(name) {
+            return () => {
+              let node;
+              const obj = {
+                c: function create() {
+                  node = element("slot");
+                  if (name !== "default") {
+                    attr(node, "name", name);
+                  }
+                },
+                /**
+                 * @param {HTMLElement} target
+                 * @param {HTMLElement} [anchor]
+                 */
+                m: function mount(target, anchor) {
+                  insert(target, node, anchor);
+                },
+                d: function destroy(detaching) {
+                  if (detaching) {
+                    detach(node);
+                  }
+                }
+              };
+              return obj;
+            };
+          };
+          await Promise.resolve();
+          if (!this.$cn || this.$c) {
+            return;
+          }
+          const $slots = {};
+          const existing_slots = get_custom_elements_slots(this);
+          for (const name of this.$s) {
+            if (name in existing_slots) {
+              $slots[name] = [create_slot2(name)];
+            }
+          }
+          for (const attribute of this.attributes) {
+            const name = this.$g_p(attribute.name);
+            if (!(name in this.$d)) {
+              this.$d[name] = get_custom_element_value(name, attribute.value, this.$p_d, "toProp");
+            }
+          }
+          for (const key in this.$p_d) {
+            if (!(key in this.$d) && this[key] !== void 0) {
+              this.$d[key] = this[key];
+              delete this[key];
+            }
+          }
+          this.$c = new this.$ctor({
+            target: this.shadowRoot || this,
+            props: {
+              ...this.$d,
+              $slots,
+              $scope: {
+                ctx: []
+              }
+            }
+          });
+          const reflect_attributes = () => {
+            this.$r = true;
+            for (const key in this.$p_d) {
+              this.$d[key] = this.$c.$.ctx[this.$c.$.props[key]];
+              if (this.$p_d[key].reflect) {
+                const attribute_value = get_custom_element_value(
+                  key,
+                  this.$d[key],
+                  this.$p_d,
+                  "toAttribute"
+                );
+                if (attribute_value == null) {
+                  this.removeAttribute(this.$p_d[key].attribute || key);
+                } else {
+                  this.setAttribute(this.$p_d[key].attribute || key, attribute_value);
+                }
+              }
+            }
+            this.$r = false;
+          };
+          this.$c.$.after_update.push(reflect_attributes);
+          reflect_attributes();
+          for (const type in this.$l) {
+            for (const listener of this.$l[type]) {
+              const unsub = this.$c.$on(type, listener);
+              this.$l_u.set(listener, unsub);
+            }
+          }
+          this.$l = {};
+        }
+      }
+      // We don't need this when working within Svelte code, but for compatibility of people using this outside of Svelte
+      // and setting attributes through setAttribute etc, this is helpful
+      attributeChangedCallback(attr2, _oldValue, newValue) {
+        if (this.$r)
+          return;
+        attr2 = this.$g_p(attr2);
+        this.$d[attr2] = get_custom_element_value(attr2, newValue, this.$p_d, "toProp");
+        this.$c?.$set({ [attr2]: this.$d[attr2] });
+      }
+      disconnectedCallback() {
+        this.$cn = false;
+        Promise.resolve().then(() => {
+          if (!this.$cn && this.$c) {
+            this.$c.$destroy();
+            this.$c = void 0;
+          }
+        });
+      }
+      $g_p(attribute_name) {
+        return Object.keys(this.$p_d).find(
+          (key) => this.$p_d[key].attribute === attribute_name || !this.$p_d[key].attribute && key.toLowerCase() === attribute_name
+        ) || attribute_name;
+      }
+    };
+  }
+  function get_custom_element_value(prop, value, props_definition, transform) {
+    const type = props_definition[prop]?.type;
+    value = type === "Boolean" && typeof value !== "boolean" ? value != null : value;
+    if (!transform || !props_definition[prop]) {
+      return value;
+    } else if (transform === "toAttribute") {
+      switch (type) {
+        case "Object":
+        case "Array":
+          return value == null ? null : JSON.stringify(value);
+        case "Boolean":
+          return value ? "" : null;
+        case "Number":
+          return value == null ? null : value;
+        default:
+          return value;
+      }
+    } else {
+      switch (type) {
+        case "Object":
+        case "Array":
+          return value && JSON.parse(value);
+        case "Boolean":
+          return value;
+        case "Number":
+          return value != null ? +value : value;
+        default:
+          return value;
+      }
+    }
+  }
+  var SvelteComponent = class {
+    /**
+     * ### PRIVATE API
+     *
+     * Do not use, may change at any time
+     *
+     * @type {any}
+     */
+    $ = void 0;
+    /**
+     * ### PRIVATE API
+     *
+     * Do not use, may change at any time
+     *
+     * @type {any}
+     */
+    $set = void 0;
+    /** @returns {void} */
+    $destroy() {
+      destroy_component(this, 1);
+      this.$destroy = noop;
+    }
+    /**
+     * @template {Extract<keyof Events, string>} K
+     * @param {K} type
+     * @param {((e: Events[K]) => void) | null | undefined} callback
+     * @returns {() => void}
+     */
+    $on(type, callback) {
+      if (!is_function(callback)) {
+        return noop;
+      }
+      const callbacks = this.$.callbacks[type] || (this.$.callbacks[type] = []);
+      callbacks.push(callback);
+      return () => {
+        const index = callbacks.indexOf(callback);
+        if (index !== -1)
+          callbacks.splice(index, 1);
+      };
+    }
+    /**
+     * @param {Partial<Props>} props
+     * @returns {void}
+     */
+    $set(props) {
+      if (this.$set && !is_empty(props)) {
+        this.$.skip_bound = true;
+        this.$set(props);
+        this.$.skip_bound = false;
+      }
+    }
+  };
+
+  // node_modules/.pnpm/svelte@4.2.18/node_modules/svelte/src/shared/version.js
+  var PUBLIC_VERSION = "4";
+
+  // node_modules/.pnpm/svelte@4.2.18/node_modules/svelte/src/runtime/internal/disclose-version/index.js
+  if (typeof window !== "undefined")
+    (window.__svelte || (window.__svelte = { v: /* @__PURE__ */ new Set() })).v.add(PUBLIC_VERSION);
+
+  // _components/HeaderLink.svelte
+  function create_fragment(ctx) {
+    let span;
+    let span_class_value;
+    let current;
+    const default_slot_template = (
+      /*#slots*/
+      ctx[2].default
+    );
+    const default_slot = create_slot(
+      default_slot_template,
+      ctx,
+      /*$scope*/
+      ctx[1],
+      null
+    );
+    return {
+      c() {
+        span = element("span");
+        if (default_slot)
+          default_slot.c();
+        attr(span, "class", span_class_value = "hover:scale-110 transition-all hover:text-black dark:hover:text-white cursor-pointer text-sm whitespace-nowrap " + /*active*/
+        (ctx[0] && "font-bold dark:text-white" || "text-gray-400"));
+      },
+      m(target, anchor) {
+        insert(target, span, anchor);
+        if (default_slot) {
+          default_slot.m(span, null);
+        }
+        current = true;
+      },
+      p(ctx2, [dirty]) {
+        if (default_slot) {
+          if (default_slot.p && (!current || dirty & /*$scope*/
+          2)) {
+            update_slot_base(
+              default_slot,
+              default_slot_template,
+              ctx2,
+              /*$scope*/
+              ctx2[1],
+              !current ? get_all_dirty_from_scope(
+                /*$scope*/
+                ctx2[1]
+              ) : get_slot_changes(
+                default_slot_template,
+                /*$scope*/
+                ctx2[1],
+                dirty,
+                null
+              ),
+              null
+            );
+          }
+        }
+        if (!current || dirty & /*active*/
+        1 && span_class_value !== (span_class_value = "hover:scale-110 transition-all hover:text-black dark:hover:text-white cursor-pointer text-sm whitespace-nowrap " + /*active*/
+        (ctx2[0] && "font-bold dark:text-white" || "text-gray-400"))) {
+          attr(span, "class", span_class_value);
+        }
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(default_slot, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(default_slot, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(span);
+        }
+        if (default_slot)
+          default_slot.d(detaching);
+      }
+    };
+  }
+  function instance($self, $props, $invalidate) {
+    let { $slots: slots = {}, $scope } = $props;
+    let { active = false } = $props;
+    $self.$set = ($props2) => {
+      if ("active" in $props2)
+        $invalidate(0, active = $props2.active);
+      if ("$scope" in $props2)
+        $invalidate(1, $scope = $props2.$scope);
+    };
+    return [active, $scope, slots];
+  }
+  var HeaderLink = class extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, instance, create_fragment, safe_not_equal, { active: 0 });
+    }
+  };
+  var HeaderLink_default = HeaderLink;
+
+  // _components/Header.svelte
+  function create_default_slot_3(ctx) {
+    let t;
+    return {
+      c() {
+        t = text("Car Rent");
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_2(ctx) {
+    let t;
+    return {
+      c() {
+        t = text("Vagas");
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot_1(ctx) {
+    let t;
+    return {
+      c() {
+        t = text("Car Rent");
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_default_slot(ctx) {
+    let t;
+    return {
+      c() {
+        t = text("Car Rent");
+      },
+      m(target, anchor) {
+        insert(target, t, anchor);
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(t);
+        }
+      }
+    };
+  }
+  function create_fragment2(ctx) {
+    let section;
+    let span0;
+    let t1;
+    let div0;
+    let headerlink0;
+    let t2;
+    let headerlink1;
+    let t3;
+    let headerlink2;
+    let t4;
+    let headerlink3;
+    let t5;
+    let div1;
+    let t8;
+    let c;
+    let current;
+    headerlink0 = new HeaderLink_default({
+      props: {
+        $slots: { default: [create_default_slot_3] },
+        $scope: { ctx }
+      }
+    });
+    headerlink1 = new HeaderLink_default({
+      props: {
+        active: true,
+        $slots: { default: [create_default_slot_2] },
+        $scope: { ctx }
+      }
+    });
+    headerlink2 = new HeaderLink_default({
+      props: {
+        $slots: { default: [create_default_slot_1] },
+        $scope: { ctx }
+      }
+    });
+    headerlink3 = new HeaderLink_default({
+      props: {
+        $slots: { default: [create_default_slot] },
+        $scope: { ctx }
+      }
+    });
+    return {
+      c() {
+        section = element("section");
+        span0 = element("span");
+        span0.textContent = "Santa Teresa";
+        t1 = space();
+        div0 = element("div");
+        create_component(headerlink0.$.fragment);
+        t2 = space();
+        create_component(headerlink1.$.fragment);
+        t3 = space();
+        create_component(headerlink2.$.fragment);
+        t4 = space();
+        create_component(headerlink3.$.fragment);
+        t5 = space();
+        div1 = element("div");
+        div1.innerHTML = `<button class="p-2 rounded-full flex gap-2 bg-white/10 backdrop-blur-md border-gray-400/25 border-[1px] h-fit"><span class="my-auto">Ryan Evans</span> <span class="min-w-8 min-h-8 bg-lime-400 rounded-full"></span></button>`;
+        t8 = space();
+        c = comment(' <button class="mode-switch my-auto">\n  <svg\n    class="sun"\n    fill="none"\n    stroke="#fbb046"\n    stroke-linecap="round"\n    stroke-linejoin="round"\n    stroke-width="2"\n    id=" feather-sun"\n    viewBox="0 0 24 24"\n    ><defs /><circle cx="12" cy="12" r="5" /><path\n      d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"\n    /></svg\n  >\n  <svg\n    class="moon"\n    fill="none"\n    stroke="#ffffff"\n    stroke-linecap="round"\n    stroke-linejoin="round"\n    stroke-width="2"\n    id=" feather-moon"\n    viewBox="0 0 24 24"><defs /><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" /></svg\n  >\n</button> ');
+        attr(span0, "class", "text-xl font-extrabold accent");
+        attr(div0, "class", "navigation-links flex gap-10");
+        attr(div1, "class", "ml-auto flex gap-2");
+        attr(section, "class", "grid grid-cols-2 lg:grid-cols-3 pl-10 pr-10 pt-5 w-full");
+      },
+      m(target, anchor) {
+        insert(target, section, anchor);
+        append(section, span0);
+        append(section, t1);
+        append(section, div0);
+        mount_component(headerlink0, div0, null);
+        append(div0, t2);
+        mount_component(headerlink1, div0, null);
+        append(div0, t3);
+        mount_component(headerlink2, div0, null);
+        append(div0, t4);
+        mount_component(headerlink3, div0, null);
+        append(section, t5);
+        append(section, div1);
+        insert(target, t8, anchor);
+        insert(target, c, anchor);
+        current = true;
+      },
+      p(ctx2, [dirty]) {
+        const headerlink0_changes = {};
+        if (dirty & /*$scope*/
+        1) {
+          headerlink0_changes.$scope = { dirty, ctx: ctx2 };
+        }
+        headerlink0.$set(headerlink0_changes);
+        const headerlink1_changes = {};
+        if (dirty & /*$scope*/
+        1) {
+          headerlink1_changes.$scope = { dirty, ctx: ctx2 };
+        }
+        headerlink1.$set(headerlink1_changes);
+        const headerlink2_changes = {};
+        if (dirty & /*$scope*/
+        1) {
+          headerlink2_changes.$scope = { dirty, ctx: ctx2 };
+        }
+        headerlink2.$set(headerlink2_changes);
+        const headerlink3_changes = {};
+        if (dirty & /*$scope*/
+        1) {
+          headerlink3_changes.$scope = { dirty, ctx: ctx2 };
+        }
+        headerlink3.$set(headerlink3_changes);
+      },
+      i(local) {
+        if (current)
+          return;
+        transition_in(headerlink0.$.fragment, local);
+        transition_in(headerlink1.$.fragment, local);
+        transition_in(headerlink2.$.fragment, local);
+        transition_in(headerlink3.$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(headerlink0.$.fragment, local);
+        transition_out(headerlink1.$.fragment, local);
+        transition_out(headerlink2.$.fragment, local);
+        transition_out(headerlink3.$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(section);
+          detach(t8);
+          detach(c);
+        }
+        destroy_component(headerlink0);
+        destroy_component(headerlink1);
+        destroy_component(headerlink2);
+        destroy_component(headerlink3);
+      }
+    };
+  }
+  var Header = class extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, null, create_fragment2, safe_not_equal, {});
+    }
+  };
+  var Header_default = Header;
+
+  // _components/Card.svelte
+  function create_fragment3(ctx) {
+    let div5;
+    let c0;
+    let t0;
+    let c1;
+    let t1;
+    let c2;
+    let t2;
+    let a;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        div5 = element("div");
+        c0 = comment(" svelte-ignore a11y-missing-attribute ");
+        t0 = space();
+        c1 = comment(" svelte-ignore a11y-click-events-have-key-events ");
+        t1 = space();
+        c2 = comment(" svelte-ignore a11y-no-static-element-interactions ");
+        t2 = space();
+        a = element("a");
+        a.innerHTML = `<div class="card-image-wrapper h-full glass !bg-black/30"><img alt="Hotel"/></div> <div class="my-auto h-fit w-fit pl-2 pr-2 grid"><div class="card-text big max-h-10 break-words text-ellipsis overflow-hidden mb-2">The Grand Canyon Hotel</div> <div class="card-text small">Stockton Street</div> <div class="card-text small">Starts from:
+        <span class="card-price">$1500</span></div></div>`;
+        attr(a, "class", "grid grid-rows-2");
+        attr(div5, "class", "h-fit w-full glass rounded-xl p-1 my-auto");
+      },
+      m(target, anchor) {
+        insert(target, div5, anchor);
+        append(div5, c0);
+        append(div5, t0);
+        append(div5, c1);
+        append(div5, t1);
+        append(div5, c2);
+        append(div5, t2);
+        append(div5, a);
+        if (!mounted) {
+          dispose = listen(
+            a,
+            "click",
+            /*click_handler*/
+            ctx[0]
+          );
+          mounted = true;
+        }
+      },
+      p: noop,
+      i: noop,
+      o: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(div5);
+        }
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function instance2($self) {
+    const click_handler = () => document.querySelector("#modal-window").classList.add("showModal");
+    return [click_handler];
+  }
+  var Card = class extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, instance2, create_fragment3, safe_not_equal, {});
+    }
+  };
+  var Card_default = Card;
+
+  // _components/Modal.svelte
+  function create_fragment4(ctx) {
+    let div49;
+    let div48;
+    let div17;
+    let t30;
+    let div47;
+    let t69;
+    let button1;
+    let mounted;
+    let dispose;
+    return {
+      c() {
+        div49 = element("div");
+        div48 = element("div");
+        div17 = element("div");
+        div17.innerHTML = `<div class="modal-image-wrapper"><!-- svelte-ignore a11y-missing-attribute --> <img ar="https://source.unsplash.com/featured/1200x900/?design,hotel"/></div> <div class="modal-info-header"><div class="left-side"><!-- svelte-ignore a11y-missing-content --> <h1 class="modalHeader-js"></h1> <p>Stockton Street</p></div> <div class="right-side">Starts from:
+          <span class="amount">$1000</span></div></div> <div class="info-bar"><div class="info-wrapper"><div class="info-icon"><svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg></div> <span>2 Bedrooms</span></div> <div class="info-wrapper"><div class="info-icon"><svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id=" feather-wind"><path d="M9.59 4.59A2 2 0 1 1 11 8H2m10.59 11.41A2 2 0 1 0 14 16H2m15.73-8.27A2.5 2.5 0 1 1 19.5 12H2"></path></svg></div> <span>2 Bathrooms</span></div> <div class="info-wrapper"><div class="info-icon"><svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id=" feather-square"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect></svg></div> <span>1250m2</span></div> <div class="info-wrapper"><div class="info-icon"><svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id=" feather-shield"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg></div> <span>Highly Secured</span></div></div> <div class="desc-wrapper"><div class="modal-info-header"><h1>Description</h1> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
+            ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat
+            nulla pariatur.</p></div> <div class="desc-actions"><button class="btn-book">Book Now</button> <div class="add-favourite"><input type="checkbox" id="favourite"/> <label for="favourite"><span class="favourite-icon"><svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id=" feather-heart"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></span> <span>Add to favourites</span></label></div></div></div>`;
+        t30 = space();
+        div47 = element("div");
+        div47.innerHTML = `<div class="app-main-right-header"><span>Reviews</span> <i>See All</i></div> <div class="card-wrapper"><div class="card"><div class="profile-info-wrapper"><div class="profile-img-wrapper"><img ar="https://source.unsplash.com/featured/1200x900/?woman,cool" alt="Review"/></div> <p>Jessica Finnick</p></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p></div></div> <div class="card-wrapper"><div class="card"><div class="profile-info-wrapper"><div class="profile-img-wrapper"><img ar="https://source.unsplash.com/featured/1200x900/?woman,latina" alt="Review"/></div> <p>Gloria Ramirez</p></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p></div></div> <div class="card-wrapper"><div class="card"><div class="profile-info-wrapper"><div class="profile-img-wrapper"><img ar="https://source.unsplash.com/featured/1200x900/?man,art" alt="Review"/></div> <p>Luck Besson</p></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p></div></div> <div class="card-wrapper"><div class="card"><div class="profile-info-wrapper"><div class="profile-img-wrapper"><img ar="https://source.unsplash.com/featured/1200x900/?woman,adventure" alt="Review"/></div> <p>Luna Rosa</p></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p></div></div> <div class="card-wrapper"><div class="card"><div class="profile-info-wrapper"><div class="profile-img-wrapper"><img ar="https://source.unsplash.com/featured/1200x900/?man,modern" alt="Review"/></div> <p>John mayer</p></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p></div></div> <div class="card-wrapper"><div class="card"><div class="profile-info-wrapper"><div class="profile-img-wrapper"><img ar="https://source.unsplash.com/featured/1200x900/?woman" alt="Review"/></div> <p>Tina Finnick</p></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p></div></div> <div class="card-wrapper"><div class="card"><div class="profile-info-wrapper"><div class="profile-img-wrapper"><img ar="https://source.unsplash.com/featured/1200x900/?woman,modern" alt="Review"/></div> <p>July Wallock</p></div> <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
+            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris</p></div></div>`;
+        t69 = space();
+        button1 = element("button");
+        button1.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id=" feather-x"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
+        attr(div17, "class", "modal-left");
+        attr(div47, "class", "modal-right");
+        attr(button1, "class", "btn btn-close");
+        attr(div48, "class", "main-modal glass");
+        attr(div49, "id", "modal-window");
+        attr(div49, "class", "shadow");
+      },
+      m(target, anchor) {
+        insert(target, div49, anchor);
+        append(div49, div48);
+        append(div48, div17);
+        append(div48, t30);
+        append(div48, div47);
+        append(div48, t69);
+        append(div48, button1);
+        if (!mounted) {
+          dispose = listen(
+            button1,
+            "click",
+            /*click_handler*/
+            ctx[0]
+          );
+          mounted = true;
+        }
+      },
+      p: noop,
+      i: noop,
+      o: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(div49);
+        }
+        mounted = false;
+        dispose();
+      }
+    };
+  }
+  function instance3($self) {
+    onMount(() => {
+      document.querySelector("#modal-window").classList.add("hideModal");
+    });
+    const click_handler = () => document.querySelector("#modal-window").classList.remove("showModal");
+    return [click_handler];
+  }
+  var Modal = class extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, instance3, create_fragment4, safe_not_equal, {});
+    }
+  };
+  var Modal_default = Modal;
+
+  // _components/FilterBtn.svelte
+  function create_fragment5(ctx) {
+    let button;
+    return {
+      c() {
+        button = element("button");
+        button.innerHTML = `<div class="rounded-full !size-8 glass flex"><svg class="size-5 mx-auto my-auto accent" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id=" feather-calendar"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"></rect><line x1="16" y1="2" x2="16" y2="6"></line><line x1="8" y1="2" x2="8" y2="6"></line><line x1="3" y1="10" x2="21" y2="10"></line></svg></div> <span class="flex-grow h-fit my-auto mr-1">Sat,Nov 10-Fri,Nov 22</span> <span class="h-fit my-auto mr-1 rotate-90">&gt;</span>`;
+        attr(button, "class", "flex gap-1 rounded-full !p-1 glass !text-white !bg-black/20");
+      },
+      m(target, anchor) {
+        insert(target, button, anchor);
+      },
+      p: noop,
+      i: noop,
+      o: noop,
+      d(detaching) {
+        if (detaching) {
+          detach(button);
+        }
+      }
+    };
+  }
+  var FilterBtn = class extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, null, create_fragment5, safe_not_equal, {});
+    }
+  };
+  var FilterBtn_default = FilterBtn;
+
+  // _components/Nav.svelte
+  function create_fragment6(ctx) {
+    let section;
+    let div4;
+    let t10;
+    let div7;
+    let div6;
+    let filterbtn0;
+    let t11;
+    let filterbtn1;
+    let t12;
+    let filterbtn2;
+    let t13;
+    let filterbtn3;
+    let t14;
+    let button1;
+    let current;
+    filterbtn0 = new FilterBtn_default({});
+    filterbtn1 = new FilterBtn_default({});
+    filterbtn2 = new FilterBtn_default({});
+    filterbtn3 = new FilterBtn_default({});
+    return {
+      c() {
+        section = element("section");
+        div4 = element("div");
+        div4.innerHTML = `<div class="flex gap-0 w-1/2 rounded glass"><input type="text" class="flex-grow !bg-transparent pl-2 text-white focus:outline-none overflow-hidden" placeholder="Search..."/> <!-- <button class="search-btn">Find Hotel</button> --> <button class="loaction-btn glass"><svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id=" feather-map-pin" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z"></path><circle cx="12" cy="10" r="3"></circle></svg></button></div> <div class="contact-actions-wrapper !hidden"><div class="contact-actions"><span>Contact us:</span> <a href="#" class="contact-link"><svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id=" feather-phone"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path></svg></a> <a href="#" class="contact-link"><svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id=" feather-message-circle" viewBox="0 0 24 24"><path d="M21 11.5a8.38 8.38 0 01-.9 3.8 8.5 8.5 0 01-7.6 4.7 8.38 8.38 0 01-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 01-.9-3.8 8.5 8.5 0 014.7-7.6 8.38 8.38 0 013.8-.9h.5a8.48 8.48 0 018 8v.5z"></path></svg></a></div> <div class="contact-actions socials"><span>Follow us:</span> <a href="#" class="contact-link facebook"><svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id=" feather-facebook"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"></path></svg></a> <a href="#" class="contact-link"><svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" fill="currentColor" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id=" feather-twitter" viewBox="0 0 24 24"><path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path></svg></a></div></div>`;
+        t10 = space();
+        div7 = element("div");
+        div6 = element("div");
+        create_component(filterbtn0.$.fragment);
+        t11 = space();
+        create_component(filterbtn1.$.fragment);
+        t12 = space();
+        create_component(filterbtn2.$.fragment);
+        t13 = space();
+        create_component(filterbtn3.$.fragment);
+        t14 = space();
+        button1 = element("button");
+        button1.innerHTML = `<div class="filter-icon"><svg class="btn-icon" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" id=" feather-sliders" viewBox="0 0 24 24"><path d="M4 21v-7M4 10V3M12 21v-9M12 8V3M20 21v-5M20 12V3M1 14h6M9 8h6M17 16h6"></path></svg></div> <span class="filter-text">More</span>`;
+        attr(div4, "class", "app-actions-line");
+        attr(button1, "class", "filter-btn more");
+        attr(div6, "class", "filter-action-buttons flex gap-2");
+        attr(div7, "class", "app-actions-line filter-line");
+        attr(section, "class", "pl-10");
+      },
+      m(target, anchor) {
+        insert(target, section, anchor);
+        append(section, div4);
+        append(section, t10);
+        append(section, div7);
+        append(div7, div6);
+        mount_component(filterbtn0, div6, null);
+        append(div6, t11);
+        mount_component(filterbtn1, div6, null);
+        append(div6, t12);
+        mount_component(filterbtn2, div6, null);
+        append(div6, t13);
+        mount_component(filterbtn3, div6, null);
+        append(div6, t14);
+        append(div6, button1);
+        current = true;
+      },
+      p: noop,
+      i(local) {
+        if (current)
+          return;
+        transition_in(filterbtn0.$.fragment, local);
+        transition_in(filterbtn1.$.fragment, local);
+        transition_in(filterbtn2.$.fragment, local);
+        transition_in(filterbtn3.$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(filterbtn0.$.fragment, local);
+        transition_out(filterbtn1.$.fragment, local);
+        transition_out(filterbtn2.$.fragment, local);
+        transition_out(filterbtn3.$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(section);
+        }
+        destroy_component(filterbtn0);
+        destroy_component(filterbtn1);
+        destroy_component(filterbtn2);
+        destroy_component(filterbtn3);
+      }
+    };
+  }
+  var Nav = class extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, null, create_fragment6, safe_not_equal, {});
+    }
+  };
+  var Nav_default = Nav;
+
+  // index.svelte
+  function create_fragment7(ctx) {
+    let div0;
+    let t0;
+    let div4;
+    let header;
+    let t1;
+    let nav;
+    let t2;
+    let section;
+    let div1;
+    let card0;
+    let t3;
+    let card1;
+    let t4;
+    let card2;
+    let t5;
+    let card3;
+    let t6;
+    let card4;
+    let t7;
+    let card5;
+    let t8;
+    let card6;
+    let t9;
+    let card7;
+    let t10;
+    let card8;
+    let t11;
+    let card9;
+    let t12;
+    let div3;
+    let div2;
+    let t16;
+    let card10;
+    let t17;
+    let modal;
+    let current;
+    header = new Header_default({});
+    nav = new Nav_default({});
+    card0 = new Card_default({});
+    card1 = new Card_default({});
+    card2 = new Card_default({});
+    card3 = new Card_default({});
+    card4 = new Card_default({});
+    card5 = new Card_default({});
+    card6 = new Card_default({});
+    card7 = new Card_default({});
+    card8 = new Card_default({});
+    card9 = new Card_default({});
+    card10 = new Card_default({});
+    modal = new Modal_default({});
+    return {
+      c() {
+        div0 = element("div");
+        t0 = space();
+        div4 = element("div");
+        create_component(header.$.fragment);
+        t1 = space();
+        create_component(nav.$.fragment);
+        t2 = space();
+        section = element("section");
+        div1 = element("div");
+        create_component(card0.$.fragment);
+        t3 = space();
+        create_component(card1.$.fragment);
+        t4 = space();
+        create_component(card2.$.fragment);
+        t5 = space();
+        create_component(card3.$.fragment);
+        t6 = space();
+        create_component(card4.$.fragment);
+        t7 = space();
+        create_component(card5.$.fragment);
+        t8 = space();
+        create_component(card6.$.fragment);
+        t9 = space();
+        create_component(card7.$.fragment);
+        t10 = space();
+        create_component(card8.$.fragment);
+        t11 = space();
+        create_component(card9.$.fragment);
+        t12 = space();
+        div3 = element("div");
+        div2 = element("div");
+        div2.innerHTML = `<span class="w-fit text-3xl">Latest Deals</span> <i class="ml-auto">See More</i>`;
+        t16 = space();
+        create_component(card10.$.fragment);
+        t17 = space();
+        create_component(modal.$.fragment);
+        attr(div0, "class", "inset-0 absolute bg");
+        attr(div1, "class", "w-full p-4 rounded-2xl grid grid-cols-3 gap-2 glass");
+        attr(div2, "class", "w-full text-white flex mb-2");
+        attr(div3, "class", "rounded-2xl glass bg-gray-100/5 border border-gray-500/50 glass p-4");
+        attr(section, "class", "grid grid-cols-[60svw_1fr] pl-10 pr-10 gap-3 overflow-y-scroll");
+        attr(div4, "class", "absolute mt-[3svh] ml-[1.5svw] h-[94svh] w-[97svw] rounded-2xl glass bg-gray-100/5 border border-gray-500/50");
+      },
+      m(target, anchor) {
+        insert(target, div0, anchor);
+        insert(target, t0, anchor);
+        insert(target, div4, anchor);
+        mount_component(header, div4, null);
+        append(div4, t1);
+        mount_component(nav, div4, null);
+        append(div4, t2);
+        append(div4, section);
+        append(section, div1);
+        mount_component(card0, div1, null);
+        append(div1, t3);
+        mount_component(card1, div1, null);
+        append(div1, t4);
+        mount_component(card2, div1, null);
+        append(div1, t5);
+        mount_component(card3, div1, null);
+        append(div1, t6);
+        mount_component(card4, div1, null);
+        append(div1, t7);
+        mount_component(card5, div1, null);
+        append(div1, t8);
+        mount_component(card6, div1, null);
+        append(div1, t9);
+        mount_component(card7, div1, null);
+        append(div1, t10);
+        mount_component(card8, div1, null);
+        append(div1, t11);
+        mount_component(card9, div1, null);
+        append(section, t12);
+        append(section, div3);
+        append(div3, div2);
+        append(div3, t16);
+        mount_component(card10, div3, null);
+        insert(target, t17, anchor);
+        mount_component(modal, target, anchor);
+        current = true;
+      },
+      p: noop,
+      i(local) {
+        if (current)
+          return;
+        transition_in(header.$.fragment, local);
+        transition_in(nav.$.fragment, local);
+        transition_in(card0.$.fragment, local);
+        transition_in(card1.$.fragment, local);
+        transition_in(card2.$.fragment, local);
+        transition_in(card3.$.fragment, local);
+        transition_in(card4.$.fragment, local);
+        transition_in(card5.$.fragment, local);
+        transition_in(card6.$.fragment, local);
+        transition_in(card7.$.fragment, local);
+        transition_in(card8.$.fragment, local);
+        transition_in(card9.$.fragment, local);
+        transition_in(card10.$.fragment, local);
+        transition_in(modal.$.fragment, local);
+        current = true;
+      },
+      o(local) {
+        transition_out(header.$.fragment, local);
+        transition_out(nav.$.fragment, local);
+        transition_out(card0.$.fragment, local);
+        transition_out(card1.$.fragment, local);
+        transition_out(card2.$.fragment, local);
+        transition_out(card3.$.fragment, local);
+        transition_out(card4.$.fragment, local);
+        transition_out(card5.$.fragment, local);
+        transition_out(card6.$.fragment, local);
+        transition_out(card7.$.fragment, local);
+        transition_out(card8.$.fragment, local);
+        transition_out(card9.$.fragment, local);
+        transition_out(card10.$.fragment, local);
+        transition_out(modal.$.fragment, local);
+        current = false;
+      },
+      d(detaching) {
+        if (detaching) {
+          detach(div0);
+          detach(t0);
+          detach(div4);
+          detach(t17);
+        }
+        destroy_component(header);
+        destroy_component(nav);
+        destroy_component(card0);
+        destroy_component(card1);
+        destroy_component(card2);
+        destroy_component(card3);
+        destroy_component(card4);
+        destroy_component(card5);
+        destroy_component(card6);
+        destroy_component(card7);
+        destroy_component(card8);
+        destroy_component(card9);
+        destroy_component(card10);
+        destroy_component(modal, detaching);
+      }
+    };
+  }
+  var Index = class extends SvelteComponent {
+    constructor(options) {
+      super();
+      init(this, options, null, create_fragment7, safe_not_equal, {});
+    }
+  };
+  var Hostel_default = Index;
+
+  // index.svelte.ts
+  var app = new Hostel_default({ target: document.getElementById("app") });
+})();
+</script>
+</body></html>
