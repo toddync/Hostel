@@ -1,22 +1,20 @@
 <script>
-  //@ts-nocheck
-  import HeaderLink from './HeaderLink.svelte';
+	//@ts-nocheck
 </script>
 
-<section class="grid grid-cols-2 lg:grid-cols-3 pl-10 pr-10 pt-5 w-full">
-  <span class="text-xl font-extrabold accent">Santa Teresa</span>
-  <div class="navigation-links flex gap-10">
-    <HeaderLink>Car Rent</HeaderLink>
-    <HeaderLink active={true}>Vagas</HeaderLink>
-    <HeaderLink>Car Rent</HeaderLink>
-    <HeaderLink>Car Rent</HeaderLink>
-  </div>
-  <div class="ml-auto flex gap-2">
-    <button class="p-2 rounded-full flex gap-2 bg-white/10 backdrop-blur-md border-gray-400/25 border-[1px] h-fit">
-      <span class="my-auto">Ryan Evans</span>
-      <span class="min-w-8 min-h-8 bg-lime-400 rounded-full" />
-    </button>
-  </div>
+<section class="flex pl-10 pr-10 pt-5 w-full">
+	<span class="text-xl font-extrabold accent">Santa Teresa</span>
+	<div class=" mx-auto w-fit flex gap-10">
+		<slot />
+	</div>
+	<div class="ml-auto w-fit flex gap-2">
+		<button
+			class="p-2 rounded-full flex gap-2 bg-white/10 backdrop-blur-md border-gray-400/25 border-[1px] h-fit"
+		>
+			<span class="my-auto">Ryan Evans</span>
+			<span class="min-w-8 min-h-8 bg-lime-400 rounded-full" />
+		</button>
+	</div>
 </section>
 <!-- <button class="mode-switch my-auto">
   <svg

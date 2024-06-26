@@ -1,17 +1,22 @@
 <script>
   // @ts-nocheck
+  import Card from './Card.svelte';
+
   import { onMount } from 'svelte';
   onMount(() => {
     document.querySelector('#modal-window').classList.add('hideModal');
   });
 </script>
 
-<div id="modal-window" class="shadow">
-  <div class="main-modal glass">
-    <div class="modal-left">
+<div id="modal-window" class="shadow absolute">
+  <div class="main-modal glass !block !max-h-fit">
+    <div class="modal-left h-fit">
       <div class="modal-image-wrapper">
         <!-- svelte-ignore a11y-missing-attribute -->
-        <img ar="https://source.unsplash.com/featured/1200x900/?design,hotel" />
+        <img
+          class="w-full"
+          src="https://www.google.com/imgres?q=hotel&imgurl=https%3A%2F%2Fwww.momondo.com.br%2Frimg%2Fhimg%2Fc2%2F51%2F76%2Fleonardo-73523-160580005-516242.jpg%3Fwidth%3D968%26height%3D607%26crop%3Dtrue&imgrefurl=https%3A%2F%2Fwww.momondo.com.br%2Fhoteis%2Flondres%2FThe-Royal-National-Hotel.mhd73523.ksp&docid=n5cEZa2ZDXw6FM&tbnid=fEPTWJBqMRsPaM&vet=12ahUKEwiQh_qv8vSGAxVMP7kGHdWpDSsQM3oECE4QAA..i&w=968&h=607&hcb=2&ved=2ahUKEwiQh_qv8vSGAxVMP7kGHdWpDSsQM3oECE4QAA"
+        />
       </div>
       <div class="modal-info-header">
         <div class="left-side">
@@ -142,108 +147,10 @@
         </div>
       </div>
     </div>
-    <div class="modal-right">
-      <div class="app-main-right-header">
-        <span>Reviews</span>
-        <i>See All</i>
-      </div>
-      <div class="card-wrapper">
-        <div class="card">
-          <div class="profile-info-wrapper">
-            <div class="profile-img-wrapper">
-              <img ar="https://source.unsplash.com/featured/1200x900/?woman,cool" alt="Review" />
-            </div>
-            <p>Jessica Finnick</p>
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-          </p>
-        </div>
-      </div>
-      <div class="card-wrapper">
-        <div class="card">
-          <div class="profile-info-wrapper">
-            <div class="profile-img-wrapper">
-              <img ar="https://source.unsplash.com/featured/1200x900/?woman,latina" alt="Review" />
-            </div>
-            <p>Gloria Ramirez</p>
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-          </p>
-        </div>
-      </div>
-      <div class="card-wrapper">
-        <div class="card">
-          <div class="profile-info-wrapper">
-            <div class="profile-img-wrapper">
-              <img ar="https://source.unsplash.com/featured/1200x900/?man,art" alt="Review" />
-            </div>
-            <p>Luck Besson</p>
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-          </p>
-        </div>
-      </div>
-      <div class="card-wrapper">
-        <div class="card">
-          <div class="profile-info-wrapper">
-            <div class="profile-img-wrapper">
-              <img ar="https://source.unsplash.com/featured/1200x900/?woman,adventure" alt="Review" />
-            </div>
-            <p>Luna Rosa</p>
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-          </p>
-        </div>
-      </div>
-      <div class="card-wrapper">
-        <div class="card">
-          <div class="profile-info-wrapper">
-            <div class="profile-img-wrapper">
-              <img ar="https://source.unsplash.com/featured/1200x900/?man,modern" alt="Review" />
-            </div>
-            <p>John mayer</p>
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-          </p>
-        </div>
-      </div>
-      <div class="card-wrapper">
-        <div class="card">
-          <div class="profile-info-wrapper">
-            <div class="profile-img-wrapper">
-              <img ar="https://source.unsplash.com/featured/1200x900/?woman" alt="Review" />
-            </div>
-            <p>Tina Finnick</p>
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-          </p>
-        </div>
-      </div>
-      <div class="card-wrapper">
-        <div class="card">
-          <div class="profile-info-wrapper">
-            <div class="profile-img-wrapper">
-              <img ar="https://source.unsplash.com/featured/1200x900/?woman,modern" alt="Review" />
-            </div>
-            <p>July Wallock</p>
-          </div>
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-          </p>
-        </div>
+    <div class="flex mt-5 rounded-lg p-4 grow min-h-0 glass">
+      <div class="w-full text-white flex mt-2 mb-2">
+        <span class="w-fit text-3xl">Reviews</span>
+        <i class="ml-auto">See All</i>
       </div>
     </div>
     <button
