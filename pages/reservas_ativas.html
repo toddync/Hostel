@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Reservas Ativas - Área Administrativa</title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+		<style>
+			body {
+				background-color: #f8f9fa; /* Main background color */
+				color: #343a40; /* Text color */
+				height: 100%;
+
+				margin: auto;
+			}
+
+			.navbar {
+				background-color: #007bff; /* Navbar background color */
+			}
+
+			.navbar-brand,
+			.nav-link {
+				color: #ffffff !important; /* Navbar text color */
+			}
+
+			.reservation-list {
+				/* New class for reservation table section */
+				margin-top: 20px;
+				overflow-x: auto; /* Enable horizontal scrolling if needed */
+			}
+
+			.reservation-list table {
+				/* Style the reservation table */
+				border-collapse: collapse; /* Remove borders between table cells */
+			}
+
+			.reservation-list th,
+			.reservation-list td {
+				/* Styles for table headers and cells */
+				padding: 10px; /* Padding for readability */
+				border: 1px solid #ddd; /* Table borders */
+			}
+
+			h1 {
+				/* Main heading */
+				font-size: 2em;
+				margin-bottom: 20px;
+				color: #007bff; /* Updated color based on previous request */
+				text-align: center;
+			}
+
+			p {
+				/* Paragraph text */
+				font-size: 1.1em;
+				line-height: 1.6;
+				text-align: justify;
+				margin-bottom: 20px;
+			}
+
+			footer {
+				background-color: #343a40; /* Footer background color */
+				color: #ffffff; /* Footer text color */
+				padding: 10px 0;
+				text-align: center;
+				width: 100%;
+				position: fixed;
+				bottom: 0;
+			}
+		</style>
+		<link rel="stylesheet" href="../css/index.css" />
+	</head>
+	<body>
+		<!-- Navbar -->
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand" href="index.html">Albergue Santa Teresa</a>
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarNav"
+				aria-controls="navbarNav"
+				aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="area_administrativa.html"
+							>Área Administrativa</a
+						>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="logout.html">Sair</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- Conteúdo da página -->
+		<div class="container mt-4">
+			<h1>Reservas Ativas</h1>
+			<p>Aqui você pode visualizar todas as reservas ativas:</p>
+
+			<!-- Tabela de reservas ativas -->
+			<div class="reservation-list">
+				<div class="table-responsive">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th scope="col">Nome do Hóspede</th>
+								<th scope="col">Quarto</th>
+								<th scope="col">Cama</th>
+								<th scope="col">Data de Check-in</th>
+								<th scope="col">Data de Check-out</th>
+								<th scope="col">Status</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- Linhas da tabela de reservas ativas aqui -->
+							<tr>
+								<td>João Silva</td>
+								<td>101</td>
+								<td>Cama 1</td>
+								<td>10/07/2024</td>
+								<td>12/07/2024</td>
+								<td>Ativa</td>
+							</tr>
+							<!-- Adicione mais linhas conforme necessário -->
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<footer>
+			<p>
+				&copy; 2024 Albergue Santa Teresa. Todos os direitos reservados.
+			</p>
+		</footer>
+
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	</body>
+</html>

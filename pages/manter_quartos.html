@@ -1,0 +1,491 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Manter Quartos - Área Administrativa</title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+		<style>
+			html,
+			body {
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				font-family: Arial, sans-serif;
+				background-color: #ffffff;
+				color: #000000;
+				transition: background-color 0.3s ease, color 0.3s ease;
+			}
+
+			body {
+				background-color: #f8f9fa;
+				color: #343a40;
+				height: 100%;
+
+				margin: auto;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+				transition: box-shadow 0.3s ease;
+			}
+
+			.navbar {
+				background-color: #000000;
+				padding: 10px 20px;
+				transition: background-color 0.3s ease, padding 0.3s ease;
+				margin-bottom: 1em;
+			}
+
+			.navbar-brand,
+			.nav-link {
+				color: #ffffff !important;
+				transition: color 0.3s ease;
+			}
+
+			.navbar-brand:hover,
+			.nav-link:hover {
+				color: #007bff !important;
+			}
+
+			.carousel-item img {
+				width: 100%;
+				height: 500px;
+				object-fit: cover;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+				transition: box-shadow 0.3s ease;
+			}
+
+			.carousel-item img:hover {
+				box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+			}
+
+			.carousel-indicators li {
+				background-color: #000000;
+				transition: background-color 0.3s ease;
+			}
+
+			.carousel-caption {
+				background-color: rgba(0, 0, 0, 0.5);
+				padding: 10px 20px;
+				transition: background-color 0.3s ease, padding 0.3s ease;
+			}
+
+			.container {
+				margin-top: 20px;
+				padding: 20px;
+				background-color: #f8f9fa;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+				transition: box-shadow 0.3s ease, background-color 0.3s ease,
+					padding 0.3s ease;
+			}
+
+			h2 {
+				font-size: 2em;
+				margin-bottom: 20px;
+				color: #007bff;
+				text-align: center;
+				text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+				transition: color 0.3s ease, text-shadow 0.3s ease;
+			}
+
+			h2:hover {
+				color: #0056b3;
+				text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+			}
+
+			p {
+				font-size: 1.1em;
+				line-height: 1.6;
+				text-align: justify;
+				margin-bottom: 20px;
+				transition: color 0.3s ease;
+			}
+
+			footer {
+				background-color: #343a40;
+				color: #ffffff;
+				padding: 10px 0;
+				text-align: center;
+				width: 100%;
+				position: fixed;
+				bottom: 0;
+
+				margin-top: 20px;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+				transition: box-shadow 0.3s ease, background-color 0.3s ease,
+					padding 0.3s ease;
+			}
+
+			footer p {
+				margin: 0;
+				font-size: 1em;
+				transition: color 0.3s ease;
+			}
+
+			footer:hover {
+				background-color: #333333;
+				box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+			}
+
+			.btn {
+				background-color: #007bff;
+				color: #ffffff;
+				padding: 10px 20px;
+				transition: background-color 0.3s ease, color 0.3s ease,
+					box-shadow 0.3s ease;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+			}
+
+			.btn:hover {
+				background-color: #0056b3;
+				color: #ffffff;
+				box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+			}
+
+			a {
+				color: #007bff;
+				text-decoration: none;
+				transition: color 0.3s ease, text-shadow 0.3s ease;
+			}
+
+			a:hover {
+				color: #0056b3;
+				text-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+			}
+
+			.nav-item {
+				margin: 0 10px;
+				transition: margin 0.3s ease, background-color 0.3s ease;
+			}
+
+			.nav-item:hover {
+				background-color: rgba(0, 0, 0, 0.1);
+				margin: 0 5px;
+			}
+
+			.carousel-control-prev-icon,
+			.carousel-control-next-icon {
+				background-color: rgba(0, 0, 0, 0.5);
+				transition: background-color 0.3s ease;
+			}
+
+			.carousel-control-prev-icon:hover,
+			.carousel-control-next-icon:hover {
+				background-color: rgba(0, 0, 0, 0.7);
+			}
+
+			.room-list {
+				margin-top: 20px;
+			}
+
+			.room-list table {
+				width: 100%;
+				border-collapse: collapse;
+				margin-top: 20px;
+			}
+
+			.room-list table th,
+			.room-list table td {
+				border: 1px solid #dee2e6;
+				padding: 8px;
+				text-align: center;
+			}
+
+			.room-list table th {
+				background-color: #007bff;
+				color: #ffffff;
+			}
+		</style>
+		<link rel="stylesheet" href="../css/index.css" />
+	</head>
+	<body>
+		<!-- Navbar -->
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand" href="index.html">Albergue Santa Teresa</a>
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarNav"
+				aria-controls="navbarNav"
+				aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="area_administrativa.html"
+							>Área Administrativa</a
+						>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="logout.html">Sair</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- Conteúdo da página -->
+		<div class="container mt-4">
+			<h1>Manter Quartos</h1>
+			<p>
+				Aqui você pode gerenciar as informações sobre os quartos e camas
+				disponíveis:
+			</p>
+
+			<!-- Tabela de quartos -->
+			<table class="table table-bordered room-list">
+				<thead>
+					<tr>
+						<th scope="col">Número do Quarto</th>
+						<th scope="col">Capacidade</th>
+						<th scope="col">Comodidades</th>
+						<th scope="col">Status</th>
+						<th scope="col">Ações</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- Linhas da tabela aqui -->
+					<tr>
+						<td>101</td>
+						<td>4 vagas</td>
+						<td>Banheiro privativo</td>
+						<td>Disponível</td>
+						<td>
+							<button
+								class="btn btn-sm btn-primary"
+								data-toggle="modal"
+								data-target="#editarQuartoModal">
+								Editar Quarto
+							</button>
+							<button
+								class="btn btn-sm btn-danger"
+								data-toggle="modal"
+								data-target="#confirmacaoModal">
+								Excluir
+							</button>
+							<button
+								class="btn btn-sm btn-info"
+								data-toggle="modal"
+								data-target="#gerenciarCamasModal">
+								Gerenciar Camas
+							</button>
+						</td>
+					</tr>
+					<!-- Adicione mais linhas conforme necessário -->
+				</tbody>
+			</table>
+		</div>
+
+		<!-- Modal de Edição de Quarto -->
+		<div
+			class="modal fade"
+			id="editarQuartoModal"
+			tabindex="-1"
+			role="dialog"
+			aria-labelledby="editarQuartoModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="editarQuartoModalLabel">
+							Editar Informações do Quarto
+						</h5>
+						<button
+							type="button"
+							class="close"
+							data-dismiss="modal"
+							aria-label="Fechar">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form>
+							<div class="form-group">
+								<label for="numeroQuarto"
+									>Número do Quarto</label
+								>
+								<input
+									type="text"
+									class="form-control"
+									id="numeroQuarto"
+									placeholder="Digite o número do quarto" />
+							</div>
+							<div class="form-group">
+								<label for="capacidade">Capacidade</label>
+								<input
+									type="text"
+									class="form-control"
+									id="capacidade"
+									placeholder="Digite a capacidade de camas" />
+							</div>
+							<div class="form-group">
+								<label for="comodidades">Comodidades</label>
+								<input
+									type="text"
+									class="form-control"
+									id="comodidades"
+									placeholder="Digite as comodidades do quarto" />
+							</div>
+							<div class="form-group">
+								<label for="status">Status</label>
+								<select class="form-control" id="status">
+									<option value="disponivel">
+										Disponível
+									</option>
+									<option value="indisponivel">
+										Indisponível
+									</option>
+								</select>
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-dismiss="modal">
+							Cancelar
+						</button>
+						<button type="button" class="btn btn-primary">
+							Salvar Alterações
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal de Gerenciamento de Camas -->
+		<div
+			class="modal fade"
+			id="gerenciarCamasModal"
+			tabindex="-1"
+			role="dialog"
+			aria-labelledby="gerenciarCamasModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content mo">
+					<div class="modal-header">
+						<h5 class="modal-title" id="gerenciarCamasModalLabel">
+							Gerenciar Camas - Quarto 101
+						</h5>
+						<button
+							type="button"
+							class="close"
+							data-dismiss="modal"
+							aria-label="Fechar">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<table class="table table-bordered">
+							<thead>
+								<tr>
+									<th scope="col">Número da Cama</th>
+									<th scope="col">Posição</th>
+									<th scope="col">Banheiro Privativo</th>
+									<th scope="col">Disponibilidade</th>
+									<th scope="col">Ações</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<td>1</td>
+									<td>Superior</td>
+									<td>Sim</td>
+									<td>Disponível</td>
+									<td>
+										<button class="btn btn-sm btn-warning">
+											Editar
+										</button>
+										<button class="btn btn-sm btn-danger">
+											Excluir
+										</button>
+									</td>
+								</tr>
+								<tr>
+									<td>2</td>
+									<td>Inferior</td>
+									<td>Não</td>
+									<td>Indisponível</td>
+									<td>
+										<button class="btn btn-sm btn-warning">
+											Editar
+										</button>
+										<button class="btn btn-sm btn-danger">
+											Excluir
+										</button>
+									</td>
+								</tr>
+								<!-- Adicione mais linhas conforme necessário -->
+							</tbody>
+						</table>
+					</div>
+					<div class="modal-footer">
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-dismiss="modal">
+							Cancelar
+						</button>
+						<button type="button" class="btn btn-primary">
+							Salvar Alterações
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal de Confirmação -->
+		<div
+			class="modal fade"
+			id="confirmacaoModal"
+			tabindex="-1"
+			role="dialog"
+			aria-labelledby="confirmacaoModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="confirmacaoModalLabel">
+							Confirmar Exclusão
+						</h5>
+						<button
+							type="button"
+							class="close"
+							data-dismiss="modal"
+							aria-label="Fechar">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						Tem certeza que deseja excluir este quarto? Todas as
+						vagas registradas nele seram apagadas também. Esta ação
+						não pode ser desfeita.
+					</div>
+					<div class="modal-footer">
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-dismiss="modal">
+							Cancelar
+						</button>
+						<button type="button" class="btn btn-danger">
+							Confirmar Exclusão
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Rodapé -->
+		<footer class="bg-dark text-white text-center py-3">
+			© 2024 Albergue Santa Teresa. Todos os direitos reservados.
+		</footer>
+
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	</body>
+</html>

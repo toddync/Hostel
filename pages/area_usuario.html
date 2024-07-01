@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Área do Usuário - Albergue Santa Teresa</title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+		<style>
+			.user-profile-container {
+				flex: 1;
+				display: flex;
+				flex-direction: column;
+				justify-content: center;
+				align-items: center;
+				padding: 30px;
+			}
+			.user-profile {
+				max-width: 500px;
+				background-color: #ffffff;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+				padding: 20px;
+				margin-bottom: 30px;
+				text-align: left;
+			}
+			.user-profile h4 {
+				margin-bottom: 15px;
+			}
+			.reservations {
+				max-width: 800px;
+				background-color: #ffffff;
+				/* box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); */
+				padding: 20px;
+				text-align: left;
+			}
+			.reservations h4 {
+				margin-bottom: 20px;
+			}
+			.cancel-button {
+				background-color: #dc3545;
+				color: #ffffff;
+				border: none;
+				padding: 5px 10px;
+				cursor: pointer;
+			}
+			.confirm-cancel {
+				display: none;
+				text-align: center;
+				margin-top: 20px;
+			}
+			footer {
+				/* background-color: #343a40; */
+				color: #ffffff;
+				padding: 10px 0;
+				text-align: center;
+				width: 100%;
+				bottom: 0;
+				margin: auto;
+			}
+		</style>
+		<link rel="stylesheet" href="../css/index.css" />
+	</head>
+	<body>
+		<!-- Navbar -->
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand" href="index.html">Albergue Santa Teresa</a>
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarNav"
+				aria-controls="navbarNav"
+				aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="index.html">Início</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="disponibilidade.html"
+							>Consultar Disponibilidade</a
+						>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="logout.html">Sair</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- User Profile Section -->
+		<div class="user-profile-container">
+			<div class="user-profile">
+				<h4>Seu Perfil</h4>
+				<p><strong>Nome:</strong> João da Silva</p>
+				<p><strong>E-mail:</strong> joao.silva@email.com</p>
+				<p><strong>CPF:</strong> 123.456.789-00</p>
+				<p><strong>Nacionalidade:</strong> Brasileiro</p>
+				<p>
+					<strong>Endereço:</strong> Rua das Flores, 123, Centro,
+					Cidade
+				</p>
+			</div>
+
+			<div class="reservations">
+				<h4>Reservas Ativas</h4>
+				<div class="card" id="reservation1">
+					<div class="card-body">
+						<h5 class="card-title">
+							Quarto com 4 Vagas - Beliche Superior
+						</h5>
+						<p class="card-text">
+							<strong>Data de Entrada:</strong> 01/07/2024
+						</p>
+						<p class="card-text">
+							<strong>Data de Saída:</strong> 05/07/2024
+						</p>
+						<p class="card-text">
+							<strong>Total de Diárias:</strong> 4
+						</p>
+						<p class="card-text">
+							<strong>Valor Total:</strong> R$ 400,00
+						</p>
+						<button
+							class="btn btn-danger red"
+							data-toggle="modal"
+							data-target="#confirmacaoModal">
+							Cancelar reserva
+						</button>
+					</div>
+				</div>
+				<!-- <div class="card mt-3" id="reservation2">
+					<div class="card-body">
+						<h5 class="card-title">
+							Quarto com 8 Vagas - Beliche Inferior
+						</h5>
+						<p class="card-text">
+							<strong>Data de Entrada:</strong> 10/08/2024
+						</p>
+						<p class="card-text">
+							<strong>Data de Saída:</strong> 15/08/2024
+						</p>
+						<p class="card-text">
+							<strong>Total de Diárias:</strong> 5
+						</p>
+						<p class="card-text">
+							<strong>Valor Total:</strong> R$ 600,00
+						</p>
+						<button
+							class="cancel-button"
+							onclick="confirmCancellation('reservation2')">
+							Cancelar Reserva
+						</button>
+						<div id="confirm2" class="confirm-cancel">
+							<p>Deseja cancelar esta reserva?</p>
+							<button
+								class="btn btn-danger"
+								onclick="cancelReservation('reservation2')">
+								Confirmar Cancelamento
+							</button>
+							<button
+								class="btn btn-secondary"
+								onclick="hideConfirmation('confirm2')">
+								Cancelar
+							</button>
+						</div>
+					</div>
+				</div> -->
+			</div>
+		</div>
+
+		<!-- Modal de Confirmação -->
+		<div
+			class="modal fade"
+			id="confirmacaoModal"
+			tabindex="-1"
+			role="dialog"
+			aria-labelledby="confirmacaoModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="confirmacaoModalLabel">
+							Confirmar Exclusão
+						</h5>
+						<button
+							type="button"
+							class="close"
+							data-dismiss="modal"
+							aria-label="Fechar">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						Tem certeza que deseja cancelar essa reserva? Esta ação
+						não pode ser desfeita.
+					</div>
+					<div class="modal-footer">
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-dismiss="modal">
+							Cancelar
+						</button>
+						<button type="button" class="btn btn-danger">
+							Confirmar Exclusão
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<footer>
+			<p>
+				&copy; 2024 Albergue Santa Teresa. Todos os direitos reservados.
+			</p>
+		</footer>
+
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<script>
+			function confirmCancellation(reservationId) {
+				document.getElementById(
+					"confirm" + reservationId,
+				).style.display = "block";
+			}
+
+			function cancelReservation(reservationId) {
+				// Simulação do cancelamento da reserva
+				alert("Reserva cancelada com sucesso!");
+				document.getElementById(reservationId).remove();
+			}
+
+			function hideConfirmation(confirmId) {
+				document.getElementById(confirmId).style.display = "none";
+			}
+		</script>
+	</body>
+</html>

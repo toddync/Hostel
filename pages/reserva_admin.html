@@ -1,0 +1,298 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Reservas - Área Administrativa</title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+		<style>
+			/* Base styles */
+			body {
+				background-color: #f0f2f5;
+				color: #343a40;
+				font-family: Arial, sans-serif;
+				height: 100%;
+				margin: 0;
+				padding: 0;
+			}
+
+			/* Navigation bar styles */
+			.navbar {
+				background-color: #2196f3;
+				padding: 10px 20px;
+			}
+
+			.navbar-brand,
+			.nav-link {
+				color: #ffffff !important;
+			}
+
+			/* Container styles */
+			.container {
+				margin: auto;
+				padding: 20px;
+			}
+
+			/* Heading styles */
+			h1,
+			h2 {
+				color: #007bff;
+				text-align: center;
+			}
+
+			h1 {
+				font-size: 2em;
+				margin-bottom: 20px;
+			}
+
+			h2 {
+				font-size: 1.5em;
+				margin-bottom: 15px;
+			}
+
+			/* Paragraph styles */
+			p {
+				font-size: 1.1em;
+				line-height: 1.6;
+				text-align: justify;
+				margin-bottom: 20px;
+			}
+
+			/* Reservation form styles */
+			.reservation-form {
+				margin-top: 20px;
+			}
+
+			.form-group {
+				margin-bottom: 15px;
+			}
+
+			.btn-primary {
+				background-color: #007bff;
+				color: #ffffff;
+				padding: 8px 16px;
+				man 4px;
+				border: none;
+				transition: background-color 0.3s ease, color 0.3s ease;
+			}
+
+			.btn-primary:hover {
+				background-color: #003399;
+			}
+
+			/* Footer styles */
+			footer {
+				background-color: #343a40;
+				color: #e0e0e0;
+				padding: 10px 0;
+				text-align: center;
+				width: 100%;
+				bottom: 0;
+			}
+
+			footer p {
+				margin: 0;
+				font-size: 1em;
+			}
+		</style>
+		<link rel="stylesheet" href="../css/index.css" />
+	</head>
+	<body>
+		<!-- Navbar -->
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand" href="index.html">Albergue Santa Teresa</a>
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarNav"
+				aria-controls="navbarNav"
+				aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="area_administrativa.html"
+							>Área Administrativa</a
+						>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="logout.html">Sair</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- Conteúdo da página -->
+		<div class="container mt-4">
+			<h1>Reservas</h1>
+			<p>Aqui você pode realizar uma reserva para outra pessoa:</p>
+
+			<!-- Formulário de reserva -->
+			<div class="reservation-form">
+				<form id="reservationForm">
+					<div class="form-group">
+						<label for="checkin">Data de Check-in</label>
+						<input
+							type="date"
+							class="form-control"
+							id="checkin"
+							required />
+					</div>
+					<div class="form-group">
+						<label for="checkout">Data de Check-out</label>
+						<input
+							type="date"
+							class="form-control"
+							id="checkout"
+							required />
+					</div>
+					<div class="form-group">
+						<label for="room">Quarto</label>
+						<select class="form-control" id="room" required>
+							<option value="">Selecione o quarto</option>
+							<option value="101">Quarto 101</option>
+							<option value="102">Quarto 102</option>
+							<option value="103">Quarto 103</option>
+							<!-- Adicione mais opções conforme necessário -->
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="bed">Cama</label>
+						<select class="form-control" id="bed" required>
+							<option value="">Selecione a cama</option>
+							<option value="1">Cama 1</option>
+							<option value="2">Cama 2</option>
+							<option value="3">Cama 3</option>
+							<!-- Adicione mais opções conforme necessário -->
+						</select>
+					</div>
+					<div class="form-group">
+						<label for="name">Nome do Hóspede</label>
+						<input
+							type="text"
+							class="form-control"
+							id="name"
+							placeholder="Digite o nome completo"
+							required />
+					</div>
+					<div class="form-group">
+						<label for="endereco">Endereço</label>
+						<input
+							type="text"
+							class="form-control"
+							id="endereco"
+							placeholder="Digite o endereço"
+							required />
+					</div>
+					<div class="form-group">
+						<label for="email">Email do Hóspede</label>
+						<input
+							type="email"
+							class="form-control"
+							id="email"
+							placeholder="Digite o email"
+							required />
+					</div>
+					<div class="form-group">
+						<label for="cpf">CPF</label>
+						<input
+							type="text"
+							class="form-control"
+							id="cpf"
+							placeholder="Digite o CPF"
+							required />
+					</div>
+					<div class="form-group">
+						<label for="identidade">Identidade</label>
+						<input
+							type="text"
+							class="form-control"
+							id="identidade"
+							placeholder="Digite a identidade"
+							required />
+					</div>
+					<div class="form-group">
+						<label for="passaporte">Passaporte</label>
+						<input
+							type="text"
+							class="form-control"
+							id="passaporte"
+							placeholder="Digite o passaporte (caso seja visitante internacional)" />
+					</div>
+					<div class="form-group">
+						<label for="nacionalidade">Nacionalidade</label>
+						<input
+							type="text"
+							class="form-control"
+							id="nacionalidade"
+							placeholder="Digite a nacionalidade"
+							required />
+					</div>
+					<button type="submit" class="btn btn-primary">
+						Verificar Disponibilidade
+					</button>
+				</form>
+			</div>
+
+			<!-- Tabela de disponibilidade -->
+			<div
+				class="availability mt-4"
+				id="availability"
+				style="display: none">
+				<h2>Disponibilidade</h2>
+				<div class="table-responsive">
+					<table class="table table-bordered">
+						<thead>
+							<tr>
+								<th scope="col">Quarto</th>
+								<th scope="col">Cama</th>
+								<th scope="col">Data de Check-in</th>
+								<th scope="col">Data de Check-out</th>
+								<th scope="col">Status</th>
+								<th scope="col">Valor Total</th>
+							</tr>
+						</thead>
+						<tbody>
+							<!-- Linhas da tabela de disponibilidade aqui -->
+							<tr>
+								<td>101</td>
+								<td>Cama 1</td>
+								<td>10/07/2024</td>
+								<td>12/07/2024</td>
+								<td>Disponível</td>
+								<td>R$ 300,00</td>
+							</tr>
+							<!-- Adicione mais linhas conforme necessário -->
+						</tbody>
+					</table>
+				</div>
+				<button class="btn btn-success">Finalizar Reserva</button>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<footer>
+			<p>
+				&copy; 2024 Albergue Santa Teresa. Todos os direitos reservados.
+			</p>
+		</footer>
+
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+		<script>
+			document
+				.getElementById("reservationForm")
+				.addEventListener("submit", function (event) {
+					event.preventDefault();
+					document.getElementById("availability").style.display =
+						"block";
+				});
+		</script>
+	</body>
+</html>
