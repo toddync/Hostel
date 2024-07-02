@@ -1,5 +1,6 @@
 <script>
 	//@ts-nocheck
+	export let noPFP = false;
 </script>
 
 <section class="flex pl-10 pr-10 pt-5 w-full">
@@ -7,8 +8,13 @@
 	<div class=" mx-auto w-fit flex gap-10">
 		<slot />
 	</div>
-	<div class="ml-auto w-fit flex gap-2">
+
+	<div
+		class="ml-auto w-fit flex gap-2 {noPFP &&
+			'max-h-[1px] overflow-hidden'}"
+	>
 		<button
+			on:click={() => (window.location.href = "Perfil")}
 			class="p-2 rounded-full flex gap-2 bg-white/10 backdrop-blur-md border-gray-400/25 border-[1px] h-fit"
 		>
 			<span class="my-auto">Ryan Evans</span>

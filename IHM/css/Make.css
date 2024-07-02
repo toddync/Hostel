@@ -1,0 +1,179 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Styling for body and HTML elements */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #ffffff;
+    color: #000000;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    background-image: url("../assets/wall.jpeg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    @apply bg-black/10 min-h-svh min-w-[100svw];
+}
+
+/* Styling for the body section */
+body {
+    max-width: 980px;
+    margin: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+/* Styling for the navbar */
+.navbar {
+    background-color: #000000;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, padding 0.3s ease;
+    margin-bottom: 1em;
+}
+
+.navbar-brand,
+.nav-link {
+    color: #ffffff !important;
+    transition: color 0.3s ease;
+}
+
+.navbar-brand:hover,
+.nav-link:hover {
+    @apply !text-blue-500;
+}
+
+/* Styling for the carousel images */
+.carousel-item img {
+    height: 500px;
+    object-fit: cover;
+    transition: box-shadow 0.3s ease;
+}
+
+/* Styling for the carousel indicators */
+.carousel-indicators li {
+    background-color: #000000;
+    transition: background-color 0.3s ease;
+}
+
+/* Styling for the carousel captions */
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5);
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, padding 0.3s ease;
+}
+
+/* Styling for the main content container */
+.container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    transition: box-shadow 0.3s ease, background-color 0.3s ease, padding 0.3s ease;
+    @apply !w-svw;
+}
+
+/* Styling for headings */
+h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #007bff;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+h2:hover {
+    color: #0056b3;
+}
+
+/* Styling for paragraphs */
+p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    text-align: justify;
+    margin-bottom: 20px;
+    transition: color 0.3s ease;
+}
+
+/* Styling for footer */
+footer {
+    background-color: #000000;
+    color: #ffffff;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, background-color 0.3s ease, padding 0.3s ease;
+    @apply pl-4 py-7;
+}
+
+footer p {
+    margin: 0;
+    font-size: 1em;
+    transition: color 0.3s ease;
+}
+
+/* Styling for buttons */
+.btn {
+    background-color: #007bff;
+    color: #ffffff;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    background-color: #0056b3;
+    color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+/* Styling for links */
+a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for navigation items */
+.nav-item {
+    margin: 0 10px;
+    transition: margin 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-item:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for carousel control icons */
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+    transition: background-color 0.3s ease;
+}
+
+.carousel-control-prev-icon:hover,
+.carousel-control-next-icon:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+/* Custom Tailwind CSS classes */
+.login-container,
+.register-container {
+    @apply w-2/5 mx-auto bg-white p-5 rounded my-10 max-w-[500px] min-w-[350px];
+}
+
+.ab-footer {
+    @apply absolute bottom-0 w-full;
+}
+
+.mo {
+    @apply mx-auto min-w-fit;
+}
+
+.red {
+    @apply bg-red-600 hover:bg-red-600;
+}

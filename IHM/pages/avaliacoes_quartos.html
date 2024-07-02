@@ -1,0 +1,342 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Avaliações de Quartos - Área Administrativa</title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+		<style>
+			body {
+				background-color: #f8f9fa;
+				color: #343a40;
+				font-family: Arial, sans-serif;
+				height: 100%;
+
+				margin: auto;
+			}
+
+			.navbar {
+				background-color: #007bff;
+			}
+
+			.navbar-brand,
+			.nav-link {
+				color: #ffffff !important;
+			}
+
+			.review-list {
+				margin-top: 20px;
+			}
+
+			.review-list table {
+				width: 100%;
+				border-collapse: collapse;
+				margin-top: 20px;
+			}
+
+			.review-list .table-header,
+			.review-list .table-body {
+				border: 1px solid #dee2e6;
+				padding: 8px;
+				text-align: center;
+			}
+
+			.review-list .table-header {
+				background-color: #007bff;
+				color: #ffffff;
+			}
+
+			footer {
+				background-color: #343a40;
+				color: #ffffff;
+				padding: 10px 0;
+				text-align: center;
+				width: 100%;
+				position: fixed;
+				bottom: 0;
+			}
+		</style>
+		<link rel="stylesheet" href="../css/index.css" />
+	</head>
+	<body>
+		<!-- Navbar -->
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand" href="index.html">Albergue Santa Teresa</a>
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarNav"
+				aria-controls="navbarNav"
+				aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="area_administrativa.html"
+							>Área Administrativa</a
+						>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="logout.html">Sair</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- Conteúdo da página -->
+		<div class="container mt-4">
+			<h1>Avaliações de Quartos</h1>
+			<p>
+				Aqui você pode gerenciar as avaliações dos quartos do albergue:
+			</p>
+
+			<!-- Botão para adicionar nova avaliação -->
+			<button
+				class="btn btn-success mb-3"
+				data-toggle="modal"
+				data-target="#adicionarModal">
+				Adicionar Avaliação
+			</button>
+
+			<!-- Tabela de avaliações -->
+			<table class="table table-bordered review-list">
+				<thead>
+					<tr>
+						<th scope="col">Quarto</th>
+						<th scope="col">Usuário</th>
+						<th scope="col">Avaliação</th>
+						<th scope="col">Nota</th>
+						<th scope="col">Ações</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!-- Linhas da tabela aqui -->
+					<tr>
+						<td>101</td>
+						<td>João Silva</td>
+						<td>Ótimo quarto, muito limpo e organizado.</td>
+						<td>5</td>
+						<td>
+							<button
+								class="btn btn-sm btn-warning"
+								data-toggle="modal"
+								data-target="#editarModal">
+								Editar
+							</button>
+							<button
+								class="btn btn-sm btn-danger"
+								data-toggle="modal"
+								data-target="#confirmacaoModal">
+								Excluir
+							</button>
+						</td>
+					</tr>
+					<!-- Adicione mais linhas conforme necessário -->
+				</tbody>
+			</table>
+		</div>
+
+		<!-- Modal de Adicionar -->
+		<div
+			class="modal fade"
+			id="adicionarModal"
+			tabindex="-1"
+			role="dialog"
+			aria-labelledby="adicionarModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="adicionarModalLabel">
+							Adicionar Nova Avaliação
+						</h5>
+						<button
+							type="button"
+							class="close"
+							data-dismiss="modal"
+							aria-label="Fechar">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form>
+							<div class="form-group">
+								<label for="quarto">Quarto</label>
+								<input
+									type="text"
+									class="form-control"
+									id="quarto"
+									placeholder="Digite o número do quarto" />
+							</div>
+							<div class="form-group">
+								<label for="usuario">Usuário</label>
+								<input
+									type="text"
+									class="form-control"
+									id="usuario"
+									placeholder="Digite o nome do usuário" />
+							</div>
+							<div class="form-group">
+								<label for="avaliacao">Avaliação</label>
+								<textarea
+									class="form-control"
+									id="avaliacao"
+									rows="3"
+									placeholder="Digite a avaliação"></textarea>
+							</div>
+							<div class="form-group">
+								<label for="nota">Nota</label>
+								<input
+									type="number"
+									class="form-control"
+									id="nota"
+									placeholder="Digite a nota (0 a 5)" />
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-dismiss="modal">
+							Cancelar
+						</button>
+						<button type="button" class="btn btn-primary">
+							Adicionar Avaliação
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal de Edição -->
+		<div
+			class="modal fade"
+			id="editarModal"
+			tabindex="-1"
+			role="dialog"
+			aria-labelledby="editarModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="editarModalLabel">
+							Editar Avaliação
+						</h5>
+						<button
+							type="button"
+							class="close"
+							data-dismiss="modal"
+							aria-label="Fechar">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form>
+							<div class="form-group">
+								<label for="editarQuarto">Quarto</label>
+								<input
+									type="text"
+									class="form-control"
+									id="editarQuarto"
+									placeholder="Digite o número do quarto" />
+							</div>
+							<div class="form-group">
+								<label for="editarUsuario">Usuário</label>
+								<input
+									type="text"
+									class="form-control"
+									id="editarUsuario"
+									placeholder="Digite o nome do usuário" />
+							</div>
+							<div class="form-group">
+								<label for="editarAvaliacao">Avaliação</label>
+								<textarea
+									class="form-control"
+									id="editarAvaliacao"
+									rows="3"
+									placeholder="Digite a avaliação"></textarea>
+							</div>
+							<div class="form-group">
+								<label for="editarNota">Nota</label>
+								<input
+									type="number"
+									class="form-control"
+									id="editarNota"
+									placeholder="Digite a nota (0 a 5)" />
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-dismiss="modal">
+							Cancelar
+						</button>
+						<button type="button" class="btn btn-primary">
+							Salvar Alterações
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal de Confirmação -->
+		<div
+			class="modal fade"
+			id="confirmacaoModal"
+			tabindex="-1"
+			role="dialog"
+			aria-labelledby="confirmacaoModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="confirmacaoModalLabel">
+							Confirmar Exclusão
+						</h5>
+						<button
+							type="button"
+							class="close"
+							data-dismiss="modal"
+							aria-label="Fechar">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						Tem certeza que deseja excluir esta avaliação? Esta ação
+						não pode ser desfeita.
+					</div>
+					<div class="modal-footer">
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-dismiss="modal">
+							Cancelar
+						</button>
+						<button type="button" class="btn btn-danger">
+							Confirmar Exclusão
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<footer>
+			<p>
+				&copy; 2024 Albergue Santa Teresa. Todos os direitos reservados.
+			</p>
+		</footer>
+
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	</body>
+</html>

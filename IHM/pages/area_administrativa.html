@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Área Administrativa - Albergue Santa Teresa</title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../css/index.css" />
+		<style>
+			.admin-dashboard {
+				max-width: 800px;
+				margin: auto;
+				padding: 20px;
+				background-color: #ffffff;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+				margin-top: 30px;
+			}
+			.admin-profile {
+				padding: 20px;
+				background-color: #ffffff;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+				margin-bottom: 30px;
+			}
+			.admin-profile h4 {
+				margin-bottom: 15px;
+			}
+			.admin-options {
+				margin-top: 20px;
+			}
+			.admin-options a {
+				display: block;
+				padding: 10px;
+				margin-bottom: 10px;
+				background-color: #007bff;
+				color: #ffffff;
+				text-decoration: none;
+				text-align: center;
+				transition: background-color 0.3s ease, padding 0.3s ease;
+			}
+			.admin-options a:hover {
+				background-color: #0056b3;
+			}
+			footer {
+				background-color: #343a40;
+				color: #ffffff;
+				padding: 10px 0;
+				text-align: center;
+				width: 100%;
+				position: fixed;
+				bottom: 0;
+
+				margin: auto;
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Navbar -->
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand" href="index.html">Albergue Santa Teresa</a>
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarNav"
+				aria-controls="navbarNav"
+				aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="area_administrativa.html"
+							>Área Administrativa</a
+						>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="logout.html">Sair</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- Admin Dashboard -->
+		<div class="admin-dashboard">
+			<div class="admin-profile">
+				<h4>Perfil do Administrador</h4>
+				<p><strong>Nome:</strong> Administrador</p>
+				<p><strong>E-mail:</strong> admin@albergue.com</p>
+				<p><strong>Cargo:</strong> Administrador</p>
+				<p><strong>Telefone:</strong> (00) 1234-5678</p>
+			</div>
+
+			<div class="admin-options">
+				<a href="manter_pacotes.html">Manter Pacotes de Reserva</a>
+				<a href="manter_quartos.html">Manter Quartos e Camas</a>
+				<a href="avaliacoes_quartos.html"
+					>Manter Avaliações do Quartos</a
+				>
+				<a href="reserva_admin.html">Realizar Reserva</a>
+				<a href="reservas_ativas.html">Reservas Ativas</a>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<footer>
+			<p>
+				&copy; 2024 Albergue Santa Teresa. Todos os direitos reservados.
+			</p>
+		</footer>
+
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	</body>
+</html>

@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Consultar Disponibilidade - Albergue Santa Teresa</title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+		<style>
+			html,
+			body {
+				height: 100%;
+				margin: 0;
+				padding: 0;
+				font-family: Arial, sans-serif;
+				background-color: #ffffff;
+				color: #000000;
+				transition: background-color 0.3s ease, color 0.3s ease;
+			}
+
+			body {
+				margin: auto;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+				transition: box-shadow 0.3s ease;
+			}
+
+			.navbar {
+				background-color: #000000;
+				padding: 10px 20px;
+				transition: background-color 0.3s ease, padding 0.3s ease;
+			}
+
+			.navbar-brand,
+			.nav-link {
+				color: #ffffff !important;
+				transition: color 0.3s ease;
+			}
+
+			.navbar-brand:hover,
+			.nav-link:hover {
+				color: #007bff !important;
+			}
+
+			/* Removed carousel styles as they weren't requested */
+
+			.container {
+				margin-top: 20px;
+				padding: 20px;
+				background-color: #f8f9fa;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+				transition: box-shadow 0.3s ease, background-color 0.3s ease,
+				padding 0.3s ease;
+			}
+
+			h2 {
+				font-size: 2em;
+				margin-bottom: 20px;
+				color: #007bff; /* Updated color based on previous request */
+				text-align: center;
+				text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+				transition: color 0.3s ease, text-shadow 0.3s ease;
+			}
+
+			h2:hover {
+				color: #0056b3;
+				text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+			}
+
+			p {
+				font-size: 1.1em;
+				line-height: 1.6;
+				text-align: justify;
+				margin-bottom: 20px;
+				transition: color 0.3s ease;
+			}
+
+			.availability-container {
+				margin: 50px auto;
+				padding: 30px;
+				background-color: rgba(255, 255, 255, 0.55); /* Adjust opacity here */
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+				backdrop-filter: blur(10px); /* Adjust blur amount as needed */
+			}
+
+
+			.availability-container h2 {
+				margin-bottom: 20px;
+			}
+
+			.room-details {
+				/* New class for room details section */
+				margin-bottom: 20px;
+			}
+
+			footer {
+				background-color: #000000;
+				color: #ffffff;
+				padding: 20px 0;
+				text-align: center;
+				margin-top: 20px;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+				transition: box-shadow 0.3s ease, background-color 0.3s ease,
+					padding 0.3s ease;
+			}
+
+			footer p {
+				margin: 0;
+				font-size: 1em;
+				transition: color 0.3s ease;
+			}
+
+			footer:hover {
+				background-color: #333333;
+				box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+			}
+		</style>
+		<link rel="stylesheet" href="../css/index.css" />
+	</head>
+	<body>
+		<!-- Navbar -->
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand" href="index.html">Albergue Santa Teresa</a>
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarNav"
+				aria-controls="navbarNav"
+				aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="index.html">Início</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="disponibilidade.html"
+							>Consultar Disponibilidade</a
+						>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="login.html">Login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="cadastro.html">Cadastro</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="area_usuario.html"
+							>Área do Usuário</a
+						>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="area_administrativa.html"
+							>Área Administrativa</a
+						>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- Availability Form -->
+		<div class="availability-container">
+			<h2>Consultar Disponibilidade</h2>
+			<form action="verificar_disponibilidade.html" method="GET">
+				<div class="form-row">
+					<div class="form-group col-md-6">
+						<label for="dataInicio">Data de Início</label>
+						<input
+							type="date"
+							class="form-control"
+							id="dataInicio"
+							name="dataInicio"
+							required />
+					</div>
+					<div class="form-group col-md-6">
+						<label for="dataFim">Data de Término</label>
+						<input
+							type="date"
+							class="form-control"
+							id="dataFim"
+							name="dataFim"
+							required />
+					</div>
+				</div>
+				<button type="submit" class="btn btn-primary btn-block">
+					Verificar Disponibilidade
+				</button>
+			</form>
+
+			<!-- Sample Room Details Section -->
+			<div class="room-details mt-4">
+				<h4>Quartos Disponíveis</h4>
+				<div class="card mb-3">
+					<div class="card-body">
+						<h5 class="card-title">Quarto com 4 Vagas</h5>
+						<p class="card-text">
+							Banheiro privativo, camas beliche
+							(superior/inferior), perto da janela, boa incidência
+							de luz solar.
+						</p>
+					</div>
+				</div>
+				<div class="card mb-3">
+					<div class="card-body">
+						<h5 class="card-title">Quarto com 8 Vagas</h5>
+						<p class="card-text">
+							Sem banheiro privativo, camas beliche
+							(superior/inferior), perto da porta, iluminação
+							moderada.
+						</p>
+					</div>
+				</div>
+				<div class="card mb-3">
+					<div class="card-body">
+						<h5 class="card-title">Quarto com 12 Vagas</h5>
+						<p class="card-text">
+							Banheiro privativo, camas beliche
+							(superior/inferior), perto da porta e da janela,
+							iluminação variada.
+						</p>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<footer>
+			<p>
+				&copy; 2024 Albergue Santa Teresa. Todos os direitos reservados.
+			</p>
+		</footer>
+
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	</body>
+</html>

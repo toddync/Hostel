@@ -1,12 +1,15 @@
 <html class="dark"><head>
-    <meta charset="UTF-8">
-    <title>Hostel</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
-    <link rel="stylesheet" href="./app.css">
-    <link rel="stylesheet" href="./style.css">
-  </head>
-  <body>
-  
+		<meta charset="UTF-8">
+		<title>Hostel</title>
+		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+		<link rel="stylesheet" href="/style.css">
+		<link rel="stylesheet" href="/styleDash.css">
+		<link rel="stylesheet" href="/app.css">
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+		<script src="/d3.js"></script>
+	</head>
+	<body>
 
 <main id="app"></main><script>document.getElementById('app').innerHTML=''</script><!---->
 
@@ -772,18 +775,22 @@
     let div0;
     let t2;
     let div1;
+    let button;
+    let div1_class_value;
     let t5;
     let c;
     let current;
+    let mounted;
+    let dispose;
     const default_slot_template = (
       /*#slots*/
-      ctx[1].default
+      ctx[2].default
     );
     const default_slot = create_slot(
       default_slot_template,
       ctx,
       /*$scope*/
-      ctx[0],
+      ctx[1],
       null
     );
     return {
@@ -797,12 +804,15 @@
           default_slot.c();
         t2 = space();
         div1 = element("div");
-        div1.innerHTML = `<button class="p-2 rounded-full flex gap-2 bg-white/10 backdrop-blur-md border-gray-400/25 border-[1px] h-fit"><span class="my-auto">Ryan Evans</span> <span class="min-w-8 min-h-8 bg-lime-400 rounded-full"></span></button>`;
+        button = element("button");
+        button.innerHTML = `<span class="my-auto">Ryan Evans</span> <span class="min-w-8 min-h-8 bg-lime-400 rounded-full"></span>`;
         t5 = space();
         c = comment(' <button class="mode-switch my-auto">\n  <svg\n    class="sun"\n    fill="none"\n    stroke="#fbb046"\n    stroke-linecap="round"\n    stroke-linejoin="round"\n    stroke-width="2"\n    id=" feather-sun"\n    viewBox="0 0 24 24"\n    ><defs /><circle cx="12" cy="12" r="5" /><path\n      d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"\n    /></svg\n  >\n  <svg\n    class="moon"\n    fill="none"\n    stroke="#ffffff"\n    stroke-linecap="round"\n    stroke-linejoin="round"\n    stroke-width="2"\n    id=" feather-moon"\n    viewBox="0 0 24 24"><defs /><path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z" /></svg\n  >\n</button> ');
         attr(span0, "class", "text-xl font-extrabold accent");
         attr(div0, "class", "mx-auto w-fit flex gap-10");
-        attr(div1, "class", "ml-auto w-fit flex gap-2");
+        attr(button, "class", "p-2 rounded-full flex gap-2 bg-white/10 backdrop-blur-md border-gray-400/25 border-[1px] h-fit");
+        attr(div1, "class", div1_class_value = "ml-auto w-fit flex gap-2 " + /*noPFP*/
+        (ctx[0] && "max-h-[1px] overflow-hidden"));
         attr(section, "class", "flex pl-10 pr-10 pt-5 w-full");
       },
       m(target, anchor) {
@@ -815,33 +825,48 @@
         }
         append(section, t2);
         append(section, div1);
+        append(div1, button);
         insert(target, t5, anchor);
         insert(target, c, anchor);
         current = true;
+        if (!mounted) {
+          dispose = listen(
+            button,
+            "click",
+            /*click_handler*/
+            ctx[3]
+          );
+          mounted = true;
+        }
       },
       p(ctx2, [dirty]) {
         if (default_slot) {
           if (default_slot.p && (!current || dirty & /*$scope*/
-          1)) {
+          2)) {
             update_slot_base(
               default_slot,
               default_slot_template,
               ctx2,
               /*$scope*/
-              ctx2[0],
+              ctx2[1],
               !current ? get_all_dirty_from_scope(
                 /*$scope*/
-                ctx2[0]
+                ctx2[1]
               ) : get_slot_changes(
                 default_slot_template,
                 /*$scope*/
-                ctx2[0],
+                ctx2[1],
                 dirty,
                 null
               ),
               null
             );
           }
+        }
+        if (!current || dirty & /*noPFP*/
+        1 && div1_class_value !== (div1_class_value = "ml-auto w-fit flex gap-2 " + /*noPFP*/
+        (ctx2[0] && "max-h-[1px] overflow-hidden"))) {
+          attr(div1, "class", div1_class_value);
         }
       },
       i(local) {
@@ -862,21 +887,27 @@
         }
         if (default_slot)
           default_slot.d(detaching);
+        mounted = false;
+        dispose();
       }
     };
   }
   function instance2($self, $props, $invalidate) {
     let { $slots: slots = {}, $scope } = $props;
+    let { noPFP = false } = $props;
+    const click_handler = () => window.location.href = "Perfil";
     $self.$set = ($props2) => {
+      if ("noPFP" in $props2)
+        $invalidate(0, noPFP = $props2.noPFP);
       if ("$scope" in $props2)
-        $invalidate(0, $scope = $props2.$scope);
+        $invalidate(1, $scope = $props2.$scope);
     };
-    return [$scope, slots];
+    return [noPFP, $scope, slots, click_handler];
   }
   var Header = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance2, create_fragment2, safe_not_equal, {});
+      init(this, options, instance2, create_fragment2, safe_not_equal, { noPFP: 0 });
     }
   };
   var Header_default = Header;
@@ -1475,4 +1506,4 @@
   var app = new pages_default({ target: document.getElementById("app") });
 })();
 </script>
-</body><!-- <script src="./script.js"></script> --></html>
+</body></html>

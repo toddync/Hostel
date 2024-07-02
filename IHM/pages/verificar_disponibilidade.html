@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Verificar Disponibilidade - Albergue Santa Teresa</title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+		<style>
+			html,
+			body {
+				height: 100%;
+				margin: 0;
+				font-family: Arial, sans-serif;
+				background-color: #f8f9fa;
+				color: #343a40;
+				transition: background-color 0.3s ease, color 0.3s ease;
+			}
+
+			body {
+				margin: auto;
+				man 30px;
+				box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+				transition: box-shadow 0.3s ease;
+			}
+
+			.navbar {
+				background-color: #000000;
+				man 15px;
+				padding: 15px 30px;
+				transition: background-color 0.3s ease, padding 0.3s ease;
+			}
+
+			.navbar-brand,
+			.nav-link {
+				color: #ffffff !important;
+				transition: color 0.3s ease;
+			}
+
+			.navbar-brand:hover,
+			.nav-link:hover {
+				color: #0056b3 !important;
+			}
+
+			.availability-container {
+				margin: 50px auto;
+				padding: 30px;
+				background-color: rgba(255, 255, 255, 0.55); /* Adjust opacity here */
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+				backdrop-filter: blur(10px); /* Adjust blur amount as needed */
+			}
+
+			.availability-container h2 {
+				margin-bottom: 20px;
+			}
+
+			.room-details {
+				margin-bottom: 20px;
+			}
+
+			.bed-details {
+				margin-top: 20px;
+			}
+
+			footer {
+				background-color: #343a40;
+				color: #ffffff;
+				padding: 10px 0;
+				text-align: center;
+				bottom: 0;
+				width: 100%;
+			}
+		</style>
+		<link rel="stylesheet" href="../css/index.css" />
+	</head>
+	<body>
+		<!-- Navbar -->
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand" href="index.html">Albergue Santa Teresa</a>
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarNav"
+				aria-controls="navbarNav"
+				aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="index.html">Início</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="disponibilidade.html"
+							>Consultar Disponibilidade</a
+						>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="login.html">Login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="cadastro.html">Cadastro</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="area_usuario.html"
+							>Área do Usuário</a
+						>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="area_administrativa.html"
+							>Área Administrativa</a
+						>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- Availability Check -->
+		<div class="availability-container">
+			<h2>Verificar Disponibilidade</h2>
+
+			<!-- Room Details -->
+			<div class="room-details">
+				<h4>Quartos Disponíveis</h4>
+				<div class="card mb-3">
+					<div class="card-body">
+						<h5 class="card-title">Quarto com 4 Vagas</h5>
+						<p class="card-text">
+							Banheiro privativo, camas beliche
+							(superior/inferior), perto da janela, boa incidência
+							de luz solar.
+						</p>
+						<button
+							class="btn btn-outline-primary"
+							type="button"
+							data-toggle="collapse"
+							data-target="#quarto4"
+							aria-expanded="false"
+							aria-controls="quarto4">
+							Ver Camas Disponíveis
+						</button>
+						<div class="collapse bed-details" id="quarto4">
+							<div class="card card-body">
+								<p>
+									<strong>Cama 1:</strong> Beliche Superior,
+									perto da janela, boa iluminação.
+									<a
+										href="reserva.html?quarto=4&cama=1"
+										class="btn btn-primary btn-sm"
+										>Reservar</a
+									>
+								</p>
+								<p>
+									<strong>Cama 2:</strong> Beliche Inferior,
+									perto da porta, iluminação moderada.
+									<a
+										href="reserva.html?quarto=4&cama=2"
+										class="btn btn-primary btn-sm"
+										>Reservar</a
+									>
+								</p>
+								<p>
+									<strong>Cama 3:</strong> Beliche Superior,
+									ao lado da porta, boa ventilação.
+									<a
+										href="reserva.html?quarto=4&cama=3"
+										class="btn btn-primary btn-sm"
+										>Reservar</a
+									>
+								</p>
+								<p>
+									<strong>Cama 4:</strong> Beliche Inferior,
+									perto da janela, incidência de luz solar
+									direta.
+									<a
+										href="reserva.html?quarto=4&cama=4"
+										class="btn btn-primary btn-sm"
+										>Reservar</a
+									>
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card mb-3">
+					<div class="card-body">
+						<h5 class="card-title">Quarto com 8 Vagas</h5>
+						<p class="card-text">
+							Sem banheiro privativo, camas beliche
+							(superior/inferior), perto da porta, iluminação
+							moderada.
+						</p>
+						<button
+							class="btn btn-outline-primary"
+							type="button"
+							data-toggle="collapse"
+							data-target="#quarto8"
+							aria-expanded="false"
+							aria-controls="quarto8">
+							Ver Camas Disponíveis
+						</button>
+						<div class="collapse bed-details" id="quarto8">
+							<div class="card card-body">
+								<p>
+									<strong>Cama 1:</strong> Beliche Superior,
+									perto da janela, boa iluminação.
+									<a
+										href="reserva.html?quarto=8&cama=1"
+										class="btn btn-primary btn-sm"
+										>Reservar</a
+									>
+								</p>
+								<p>
+									<strong>Cama 2:</strong> Beliche Inferior,
+									perto da porta, iluminação moderada.
+									<a
+										href="reserva.html?quarto=8&cama=2"
+										class="btn btn-primary btn-sm"
+										>Reservar</a
+									>
+								</p>
+								<!-- Adicionar mais camas conforme necessário -->
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="card mb-3">
+					<div class="card-body">
+						<h5 class="card-title">Quarto com 12 Vagas</h5>
+						<p class="card-text">
+							Banheiro privativo, camas beliche
+							(superior/inferior), perto da porta e da janela,
+							iluminação variada.
+						</p>
+						<button
+							class="btn btn-outline-primary"
+							type="button"
+							data-toggle="collapse"
+							data-target="#quarto12"
+							aria-expanded="false"
+							aria-controls="quarto12">
+							Ver Camas Disponíveis
+						</button>
+						<div class="collapse bed-details" id="quarto12">
+							<div class="card card-body">
+								<p>
+									<strong>Cama 1:</strong> Beliche Superior,
+									perto da janela, boa iluminação.
+									<a
+										href="reserva.html?quarto=12&cama=1"
+										class="btn btn-primary btn-sm"
+										>Reservar</a
+									>
+								</p>
+								<p>
+									<strong>Cama 2:</strong> Beliche Inferior,
+									perto da porta, iluminação moderada.
+									<a
+										href="reserva.html?quarto=12&cama=2"
+										class="btn btn-primary btn-sm"
+										>Reservar</a
+									>
+								</p>
+								<!-- Adicionar mais camas conforme necessário -->
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<!-- Hostel Facilities -->
+			<div class="facilities mt-4">
+				<h4>Facilidades do Albergue</h4>
+				<ul>
+					<li>Restaurante anexo ao albergue</li>
+					<li>Wi-Fi gratuito</li>
+					<li>Churrasqueira</li>
+					<li>Lounge para confraternizações</li>
+					<li>Workstation</li>
+					<li>Albergue 24h</li>
+					<li>Acessibilidade completa</li>
+					<li>Estacionamento disponível</li>
+					<li>Ar condicionado em todos os quartos</li>
+					<li>Termos de uso apresentados antes da compra</li>
+					<li>Possibilidade de visitas</li>
+					<li>Avaliação de qualidade de estadia</li>
+					<li>Seguro do hotel em caso de violação</li>
+					<li>Câmeras de segurança nos corredores</li>
+					<li>Pets não são permitidos</li>
+				</ul>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<footer>
+			<p>
+				&copy; 2024 Albergue Santa Teresa. Todos os direitos reservados.
+			</p>
+		</footer>
+
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	</body>
+</html>

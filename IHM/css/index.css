@@ -1,0 +1,208 @@
+html{
+    background-image: url('../assets/wall.jpeg');
+    background-size: cover;
+    background-position: center;
+}
+html, body {
+    height: 100vh; /* Ensures full viewport height */
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    background-color: #00000000;
+    color: #000000;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    overflow-x: hidden; /* Hides horizontal overflow */
+}
+
+body {
+    height: 100%;
+    max-width: 980px;
+    margin: auto;
+    border-radius: 24px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+    overflow-x: hidden;
+}
+
+.navbar {
+    background-color: #000000;
+    border-radius: 12px;
+    padding: 18x 20px;
+    transition: background-color 0.3s ease, padding 0.3s ease;
+    margin-bottom: 1em;
+    overflow-x: hidden; /* Hides horizontal overflow */
+}
+
+.navbar-brand, .nav-link {
+    color: #ffffff !important;
+    transition: color 0.3s ease;
+}
+
+.navbar-brand:hover, .nav-link:hover {
+    color: #007bff !important;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%; /* Ensures images cover full viewport height */
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    transition: box-shadow 0.3s ease;
+    overflow-x: hidden; /* Hides horizontal overflow */
+}
+
+.carousel-item img:hover {
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+}
+
+.carousel-indicators li {
+    background-color: #000000;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-caption {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 12px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, padding 0.3s ease;
+    overflow-x: hidden; /* Hides horizontal overflow */
+}
+
+.container {
+    margin-top: 20px;
+    padding: 20px;
+    background-color: #f8f9fa;
+    border-radius: 12px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, background-color 0.3s ease, padding 0.3s ease;
+    overflow-x: hidden; /* Hides horizontal overflow */
+}
+
+h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+    color: #007bff;
+    text-align: center;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+h2:hover {
+    color: #0056b3;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+p {
+    font-size: 1.1em;
+    line-height: 1.6;
+    text-align: justify;
+    margin-bottom: 20px;
+    transition: color 0.3s ease;
+}
+
+footer {
+    background-color: #000000;
+    color: #ffffff;
+    padding: 20px 0;
+    text-align: center;
+    border-radius: 12px;
+    margin-top: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease, background-color 0.3s ease, padding 0.3s ease;
+    overflow-x: hidden; /* Hides horizontal overflow */
+}
+
+footer p {
+    margin: 0;
+    font-size: 1em;
+    transition: color 0.3s ease;
+}
+
+footer:hover {
+    background-color: #333333;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.btn {
+    background-color: #007bff;
+    color: #ffffff;
+    border-radius: 24px;
+    padding: 10px 20px;
+    transition: background-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.btn:hover {
+    background-color: #0056b3;
+    color: #ffffff;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+a {
+    color: #007bff;
+    text-decoration: none;
+    transition: color 0.3s ease, text-shadow 0.3s ease;
+}
+
+a:hover {
+    color: #0056b3;
+    text-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+}
+
+.nav-item {
+    margin: 0 10px;
+    transition: margin 0.3s ease, background-color 0.3s ease;
+}
+
+.nav-item:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    margin: 0 5px;
+}
+
+.carousel-control-prev-icon, .carousel-control-next-icon {
+    background-color: rgba(0, 0, 0, 0.5);
+    border-radius: 50%;
+    transition: background-color 0.3s ease;
+}
+
+.carousel-control-prev-icon:hover, .carousel-control-next-icon:hover {
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.reservations {
+    @apply bg-white p-5 rounded my-10 max-w-[500px] min-w-[350px];
+
+    /* Frosted Glass Effect */
+    background-color: rgba(255, 255, 255, 0.8); /* Adjust opacity here */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px); /* Adjust blur amount as needed */
+}
+
+.user-profile-container {
+    @apply bg-white p-5 rounded my-10 max-w-[500px] min-w-[350px];
+
+    /* Frosted Glass Effect */
+    background-color: rgba(255, 255, 255, 0.8); /* Adjust opacity here */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px); /* Adjust blur amount as needed */
+}
+
+.admin-dashboard {
+    @apply bg-white p-5 rounded my-10 max-w-[500px] min-w-[350px];
+
+    /* Frosted Glass Effect */
+    background-color: rgba(255, 255, 255, 0.8); /* Adjust opacity here */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px); /* Adjust blur amount as needed */
+}
+
+.container.mt-4 {
+    @apply bg-white p-5 rounded my-10 max-w-[500px] min-w-[350px];
+
+    /* Frosted Glass Effect */
+    background-color: rgba(255, 255, 255, 0.8); /* Adjust opacity here */
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px); /* Adjust blur amount as needed */
+}

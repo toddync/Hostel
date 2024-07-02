@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Reserva - Albergue Santa Teresa</title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+		<style>
+			body {
+				background-color: #f8f9fa;
+				color: #343a40;
+
+				margin: auto;
+			}
+			.navbar {
+				background-color: #007bff;
+			}
+			.navbar-brand,
+			.nav-link {
+				color: #ffffff !important;
+			}
+			.reservation-container {
+				margin: 50px auto;
+				padding: 30px;
+				background-color: #ffffff;
+				man 10px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+			}
+			.reservation-container h2 {
+				margin-bottom: 20px;
+			}
+			.reservation-form {
+				margin-top: 20px;
+			}
+			.reservation-summary {
+				margin-top: 30px;
+			}
+			footer {
+				background-color: #343a40;
+				color: #ffffff;
+				padding: 10px 0;
+				text-align: center;
+				bottom: 0;
+
+				margin: auto;
+			}
+		</style>
+		<link rel="stylesheet" href="../css/index.css" />
+	</head>
+	<body>
+		<!-- Navbar -->
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand" href="index.html">Albergue Santa Teresa</a>
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarNav"
+				aria-controls="navbarNav"
+				aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="index.html">Início</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="disponibilidade.html"
+							>Consultar Disponibilidade</a
+						>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="login.html">Login</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="cadastro.html">Cadastro</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="area_usuario.html"
+							>Área do Usuário</a
+						>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="area_administrativa.html"
+							>Área Administrativa</a
+						>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- Reservation Section -->
+		<div class="reservation-container">
+			<h2>Reserva</h2>
+
+			<!-- Reservation Summary -->
+			<div class="reservation-summary">
+				<h4>Resumo da Reserva</h4>
+				<p><strong>Quarto:</strong> Quarto com 4 Vagas</p>
+				<p><strong>Cama:</strong> Beliche Superior, perto da janela</p>
+				<p><strong>Data de Entrada:</strong> 01/07/2024</p>
+				<p><strong>Data de Saída:</strong> 05/07/2024</p>
+				<p><strong>Total de Diárias:</strong> 4</p>
+				<p><strong>Valor Total:</strong> R$ 400,00</p>
+			</div>
+
+			<!-- Payment Form -->
+			<div class="reservation-form">
+				<h4>Informações de Pagamento</h4>
+				<form>
+					<div class="form-row">
+						<div class="form-group col-md-6">
+							<label for="cardName">Nome no Cartão</label>
+							<input
+								type="text"
+								class="form-control"
+								id="cardName"
+								placeholder="Nome no Cartão" />
+						</div>
+						<div class="form-group col-md-6">
+							<label for="cardNumber">Número do Cartão</label>
+							<input
+								type="text"
+								class="form-control"
+								id="cardNumber"
+								placeholder="Número do Cartão" />
+						</div>
+					</div>
+					<div class="form-row">
+						<div class="form-group col-md-4">
+							<label for="expiryDate">Data de Validade</label>
+							<input
+								type="text"
+								class="form-control"
+								id="expiryDate"
+								placeholder="MM/AA" />
+						</div>
+						<div class="form-group col-md-4">
+							<label for="cvv">CVV</label>
+							<input
+								type="text"
+								class="form-control"
+								id="cvv"
+								placeholder="CVV" />
+						</div>
+						<div class="form-group col-md-4">
+							<label for="installments">Parcelas</label>
+							<select id="installments" class="form-control">
+								<option selected>1x R$ 400,00</option>
+								<option>2x R$ 200,00</option>
+								<option>3x R$ 133,33</option>
+								<option>4x R$ 100,00</option>
+							</select>
+						</div>
+					</div>
+					<button type="submit" class="btn btn-primary">
+						Confirmar Reserva
+					</button>
+				</form>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<footer>
+			<p>
+				&copy; 2024 Albergue Santa Teresa. Todos os direitos reservados.
+			</p>
+		</footer>
+
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	</body>
+</html>

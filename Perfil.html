@@ -383,7 +383,7 @@
     }
     component.$.dirty[i / 31 | 0] |= 1 << i % 31;
   }
-  function init(component, options, instance5, create_fragment6, not_equal, props, append_styles = null, dirty = [-1]) {
+  function init(component, options, instance4, create_fragment5, not_equal, props, append_styles = null, dirty = [-1]) {
     const parent_component = current_component;
     set_current_component(component);
     const $ = component.$ = {
@@ -409,7 +409,7 @@
     };
     append_styles && append_styles($.root);
     let ready = false;
-    $.ctx = instance5 ? instance5(component, options.props || {}, (i, ret, ...rest) => {
+    $.ctx = instance4 ? instance4(component, options.props || {}, (i, ret, ...rest) => {
       const value = rest.length ? rest[0] : ret;
       if ($.ctx && not_equal($.ctx[i], $.ctx[i] = value)) {
         if (!$.skip_bound && $.bound[i])
@@ -422,7 +422,7 @@
     $.update();
     ready = true;
     run_all($.before_update);
-    $.fragment = create_fragment6 ? create_fragment6($.ctx) : false;
+    $.fragment = create_fragment5 ? create_fragment5($.ctx) : false;
     if (options.target) {
       if (options.hydrate) {
         start_hydrating();
@@ -697,78 +697,8 @@
   if (typeof window !== "undefined")
     (window.__svelte || (window.__svelte = { v: /* @__PURE__ */ new Set() })).v.add(PUBLIC_VERSION);
 
-  // _components/Card.svelte
-  function create_fragment(ctx) {
-    let div5;
-    let c0;
-    let t0;
-    let c1;
-    let t1;
-    let c2;
-    let t2;
-    let a;
-    let mounted;
-    let dispose;
-    return {
-      c() {
-        div5 = element("div");
-        c0 = comment(" svelte-ignore a11y-missing-attribute ");
-        t0 = space();
-        c1 = comment(" svelte-ignore a11y-click-events-have-key-events ");
-        t1 = space();
-        c2 = comment(" svelte-ignore a11y-no-static-element-interactions ");
-        t2 = space();
-        a = element("a");
-        a.innerHTML = `<div class="h-36 lg:h-28 glass rounded-lg"><img alt="Hotel"/></div> <div class="my-auto h-fit w-fit pl-2 pr-2 grid"><div class="card-text big max-h-10 break-words overflow-hidden mb-2">The Grand Canyon Hotel</div> <div class="text-gray-300 text-sm">Stockton Street</div> <div class="text-gray-300 text-sm">Starts from:
-        <span class="card-price">$1500</span></div></div>`;
-        attr(a, "class", "grid grid-rows-2");
-        attr(div5, "class", "h-m lg:h-fit w-full glass rounded-xl p-1 my-auto");
-      },
-      m(target, anchor) {
-        insert(target, div5, anchor);
-        append(div5, c0);
-        append(div5, t0);
-        append(div5, c1);
-        append(div5, t1);
-        append(div5, c2);
-        append(div5, t2);
-        append(div5, a);
-        if (!mounted) {
-          dispose = listen(
-            a,
-            "click",
-            /*click_handler*/
-            ctx[0]
-          );
-          mounted = true;
-        }
-      },
-      p: noop,
-      i: noop,
-      o: noop,
-      d(detaching) {
-        if (detaching) {
-          detach(div5);
-        }
-        mounted = false;
-        dispose();
-      }
-    };
-  }
-  function instance($self) {
-    const click_handler = () => document.querySelector("#modal-window").classList.add("showModal");
-    return [click_handler];
-  }
-  var Card = class extends SvelteComponent {
-    constructor(options) {
-      super();
-      init(this, options, instance, create_fragment, safe_not_equal, {});
-    }
-  };
-  var Card_default = Card;
-
   // _components/Header.svelte
-  function create_fragment2(ctx) {
+  function create_fragment(ctx) {
     let section;
     let span0;
     let t1;
@@ -892,7 +822,7 @@
       }
     };
   }
-  function instance2($self, $props, $invalidate) {
+  function instance($self, $props, $invalidate) {
     let { $slots: slots = {}, $scope } = $props;
     let { noPFP = false } = $props;
     const click_handler = () => window.location.href = "Perfil";
@@ -907,13 +837,13 @@
   var Header = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance2, create_fragment2, safe_not_equal, { noPFP: 0 });
+      init(this, options, instance, create_fragment, safe_not_equal, { noPFP: 0 });
     }
   };
   var Header_default = Header;
 
   // _components/HeaderLink.svelte
-  function create_fragment3(ctx) {
+  function create_fragment2(ctx) {
     let a;
     let a_class_value;
     let current;
@@ -1007,7 +937,7 @@
       }
     };
   }
-  function instance3($self, $props, $invalidate) {
+  function instance2($self, $props, $invalidate) {
     let { $slots: slots = {}, $scope } = $props;
     let { active = false } = $props;
     let { href = "#" } = $props;
@@ -1024,13 +954,13 @@
   var HeaderLink = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance3, create_fragment3, safe_not_equal, { active: 0, href: 1 });
+      init(this, options, instance2, create_fragment2, safe_not_equal, { active: 0, href: 1 });
     }
   };
   var HeaderLink_default = HeaderLink;
 
   // _components/Modal.svelte
-  function create_fragment4(ctx) {
+  function create_fragment3(ctx) {
     let div21;
     let div20;
     let div17;
@@ -1093,7 +1023,7 @@
       }
     };
   }
-  function instance4($self) {
+  function instance3($self) {
     onMount(() => {
       document.querySelector("#modal-window").classList.add("hideModal");
     });
@@ -1103,12 +1033,12 @@
   var Modal = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, instance4, create_fragment4, safe_not_equal, {});
+      init(this, options, instance3, create_fragment3, safe_not_equal, {});
     }
   };
   var Modal_default = Modal;
 
-  // pages/Deals.svelte
+  // pages/Perfil.svelte
   function create_default_slot_3(ctx) {
     let t;
     return {
@@ -1173,14 +1103,14 @@
     });
     headerlink1 = new HeaderLink_default({
       props: {
-        active: true,
+        href: "/Deals",
         $slots: { default: [create_default_slot_2] },
         $scope: { ctx }
       }
     });
     headerlink2 = new HeaderLink_default({
       props: {
-        href: "/Perfil",
+        active: true,
         $slots: { default: [create_default_slot_1] },
         $scope: { ctx }
       }
@@ -1246,67 +1176,47 @@
       }
     };
   }
-  function create_fragment5(ctx) {
+  function create_fragment4(ctx) {
     let div0;
     let t0;
-    let div2;
+    let div18;
     let header;
     let t1;
     let section;
-    let div1;
-    let card0;
-    let t2;
-    let card1;
-    let t3;
-    let card2;
-    let t4;
+    let t25;
     let modal;
     let current;
     header = new Header_default({
       props: {
+        noPFP: true,
         $slots: { default: [create_default_slot] },
         $scope: { ctx }
       }
     });
-    card0 = new Card_default({});
-    card1 = new Card_default({});
-    card2 = new Card_default({});
     modal = new Modal_default({});
     return {
       c() {
         div0 = element("div");
         t0 = space();
-        div2 = element("div");
+        div18 = element("div");
         create_component(header.$.fragment);
         t1 = space();
         section = element("section");
-        div1 = element("div");
-        create_component(card0.$.fragment);
-        t2 = space();
-        create_component(card1.$.fragment);
-        t3 = space();
-        create_component(card2.$.fragment);
-        t4 = space();
+        section.innerHTML = `<div class="w-5/6 h-fit py-5 glass rounded-2xl mx-auto grid grid-cols-3 grid-rows-1"><div class="bg-lime-400 rounded-full w-60 aspect-square mx-auto my-auto"></div> <div class="col-span-2 p-10 grid grid-rows-1 gap-2"><div class="h-fit my-auto"><div class="flex gap-2"><span class="text-2xl font-extrabold">Nome:</span> <div class="text-xl">Ryan Evans</div></div> <div class="flex gap-2"><span class="text-2xl font-extrabold">E-mail:</span> <div class="text-xl">ryan@gmail.com</div></div> <div class="flex gap-2"><span class="text-2xl font-extrabold">CPF:</span> <div class="text-xl">123.456.789-00</div></div> <div class="flex gap-2"><span class="text-2xl font-extrabold">Nacionalidade:</span> <div class="text-xl">Brasileiro</div></div> <div class="flex gap-2"><span class="text-2xl font-extrabold">Endere\xE7o:</span> <div class="text-xl">Rua das Flores, 123, Centro, Cidade</div></div></div></div></div> <div class="glass mt-5 mx-auto w-5/6 rounded-2xl"><div class="text-3xl p-5">Reservas ativas:</div> <div></div></div>`;
+        t25 = space();
         create_component(modal.$.fragment);
         attr(div0, "class", "inset-0 absolute bg");
-        attr(div1, "class", "w-full glass rounded-2xl grid grid-cols-2 gap-5 p-10 lg:gap-2 lg:p-4 lg:grid-cols-4");
-        attr(section, "class", "grid g:grid-cols-[60%_1fr] pl-10 pr-10 gap-3 overflow-y-scroll my-auto mt-5");
-        attr(div2, "class", "mx-auto h-[97svh] my-auto w-[98svw] max-w-[1500px] lg:max-h-[850px] rounded-2xl glass bg-gray-100/5 border border-gray-500/50 overflow-y-scroll");
+        attr(section, "class", "mt-10");
+        attr(div18, "class", "mx-auto my-auto h-[94svh] w-[97svw] max-w-[1500px] lg:max-h-[850px] rounded-2xl glass bg-gray-100/5 border border-gray-500/50 overflow-y-auto grid grid-rows-[2rem_1fr]");
       },
       m(target, anchor) {
         insert(target, div0, anchor);
         insert(target, t0, anchor);
-        insert(target, div2, anchor);
-        mount_component(header, div2, null);
-        append(div2, t1);
-        append(div2, section);
-        append(section, div1);
-        mount_component(card0, div1, null);
-        append(div1, t2);
-        mount_component(card1, div1, null);
-        append(div1, t3);
-        mount_component(card2, div1, null);
-        insert(target, t4, anchor);
+        insert(target, div18, anchor);
+        mount_component(header, div18, null);
+        append(div18, t1);
+        append(div18, section);
+        insert(target, t25, anchor);
         mount_component(modal, target, anchor);
         current = true;
       },
@@ -1322,17 +1232,11 @@
         if (current)
           return;
         transition_in(header.$.fragment, local);
-        transition_in(card0.$.fragment, local);
-        transition_in(card1.$.fragment, local);
-        transition_in(card2.$.fragment, local);
         transition_in(modal.$.fragment, local);
         current = true;
       },
       o(local) {
         transition_out(header.$.fragment, local);
-        transition_out(card0.$.fragment, local);
-        transition_out(card1.$.fragment, local);
-        transition_out(card2.$.fragment, local);
         transition_out(modal.$.fragment, local);
         current = false;
       },
@@ -1340,27 +1244,24 @@
         if (detaching) {
           detach(div0);
           detach(t0);
-          detach(div2);
-          detach(t4);
+          detach(div18);
+          detach(t25);
         }
         destroy_component(header);
-        destroy_component(card0);
-        destroy_component(card1);
-        destroy_component(card2);
         destroy_component(modal, detaching);
       }
     };
   }
-  var Deals = class extends SvelteComponent {
+  var Perfil = class extends SvelteComponent {
     constructor(options) {
       super();
-      init(this, options, null, create_fragment5, safe_not_equal, {});
+      init(this, options, null, create_fragment4, safe_not_equal, {});
     }
   };
-  var Deals_default = Deals;
+  var Perfil_default = Perfil;
 
-  // pages/Deals.svelte.ts
-  var app = new Deals_default({ target: document.getElementById("app") });
+  // pages/Perfil.svelte.ts
+  var app = new Perfil_default({ target: document.getElementById("app") });
 })();
 </script>
 </body></html>

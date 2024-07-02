@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Manter Pacotes - Área Administrativa</title>
+		<link
+			rel="stylesheet"
+			href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+		<link rel="stylesheet" href="../css/index.css" />
+		<style>
+			body {
+				background-color: #f8f9fa;
+				color: #343a40;
+				height: 100%;
+
+				margin: auto;
+			}
+			.navbar {
+				background-color: #000000;
+				man 12px;
+				padding: 10px 20px;
+				transition: background-color 0.3s ease, padding 0.3s ease;
+				margin-bottom: 1em;
+			}
+			.navbar-brand,
+			.nav-link {
+				color: #ffffff !important;
+				transition: color 0.3s ease;
+			}
+			.navbar-brand:hover,
+			.nav-link:hover {
+				color: #007bff !important;
+			}
+			.admin-dashboard {
+				max-width: 800px;
+				margin: auto;
+				padding: 20px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+				margin-top: 30px;
+				min-height: 100vh;
+				display: flex;
+				flex-direction: column;
+
+				/* Frosted Glass Effect */
+				background-color: rgba(255, 255, 255, 0.8); /* Adjust opacity here */
+				backdrop-filter: blur(10px); /* Adjust blur amount as needed */
+			}
+
+			.admin-profile {
+				padding: 20px;
+				background-color: #ffffff;
+				man 10px;
+				box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+				margin-bottom: 30px;
+			}
+			.admin-profile h4 {
+				margin-bottom: 15px;
+			}
+			.package-list {
+				margin-top: 20px;
+			}
+			.package-list table {
+				width: 100%;
+				border-collapse: collapse;
+				margin-top: 20px;
+			}
+			.package-list table th,
+			.package-list table td {
+				border: 1px solid #dee2e6;
+				padding: 8px;
+				text-align: center;
+			}
+			.package-list table th {
+				background-color: #007bff;
+				color: #ffffff;
+			}
+			footer {
+				background-color: #343a40;
+				color: #ffffff;
+				padding: 10px 0;
+				text-align: center;
+				width: 100%;
+				position: fixed;
+				bottom: 0;
+
+				margin: auto;
+			}
+			.btn {
+				background-color: #007bff;
+				color: #ffffff;
+				man: 24px;
+				padding: 10px 20px;
+				transition: background-color 0.3s ease, color 0.3s ease,
+					box-shadow 0.3s ease;
+				box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+				font-size: 1em;
+			}
+			.btn:hover {
+				background-color: #0056b3;
+				color: #ffffff;
+				box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+			}
+			@media (max-width: 768px) {
+				.btn {
+					padding: 8px 16px;
+					font-size: 0.9em;
+				}
+			}
+			@media (max-width: 480px) {
+				.btn {
+					padding: 6px 12px;
+					font-size: 0.8em;
+				}
+			}
+		</style>
+	</head>
+	<body>
+		<!-- Navbar -->
+		<nav class="navbar navbar-expand-lg navbar-dark">
+			<a class="navbar-brand" href="index.html">Albergue Santa Teresa</a>
+			<button
+				class="navbar-toggler"
+				type="button"
+				data-toggle="collapse"
+				data-target="#navbarNav"
+				aria-controls="navbarNav"
+				aria-expanded="false"
+				aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav ml-auto">
+					<li class="nav-item">
+						<a class="nav-link" href="area_administrativa.html"
+							>Área Administrativa</a
+						>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="logout.html">Sair</a>
+					</li>
+				</ul>
+			</div>
+		</nav>
+
+		<!-- Admin Dashboard -->
+		<div class="admin-dashboard">
+			<div class="admin-profile">
+				<h4>Perfil do Administrador</h4>
+				<p><strong>Nome:</strong> Administrador</p>
+				<p><strong>E-mail:</strong> admin@albergue.com</p>
+				<p><strong>Cargo:</strong> Administrador</p>
+				<p><strong>Telefone:</strong> (00) 1234-5678</p>
+			</div>
+
+			<!-- Manter Pacotes -->
+			<div class="package-list">
+				<h4>Manter Pacotes de Hospedagem</h4>
+				<p>
+					Aqui você pode gerenciar os pacotes de hospedagem
+					disponíveis:
+				</p>
+
+				<table class="table table-bordered">
+					<thead class="thead-dark">
+						<tr>
+							<th scope="col">Pacote</th>
+							<th scope="col">Descrição</th>
+							<th scope="col">Preço por Noite</th>
+							<th scope="col">Ações</th>
+						</tr>
+					</thead>
+					<tbody>
+						<!-- Exemplo de linha de pacote -->
+						<tr>
+							<td>Pacote 1</td>
+							<td>Descrição do Pacote 1</td>
+							<td>R$ 100,00</td>
+							<td>
+								<button
+									class="btn btn-warning btn-sm"
+									data-toggle="modal"
+									data-target="#editarModal">
+									Editar
+								</button>
+								<button
+									class="btn btn-danger btn-sm"
+									data-toggle="modal"
+									data-target="#excluirModal">
+									Excluir
+								</button>
+							</td>
+						</tr>
+						<!-- Exemplo de linha de pacote -->
+						<tr>
+							<td>Pacote 2</td>
+							<td>Descrição do Pacote 2</td>
+							<td>R$ 150,00</td>
+							<td>
+								<button
+									class="btn btn-warning btn-sm"
+									data-toggle="modal"
+									data-target="#editarModal">
+									Editar
+								</button>
+								<button
+									class="btn btn-danger btn-sm"
+									data-toggle="modal"
+									data-target="#excluirModal">
+									Excluir
+								</button>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+
+				<!-- Botão para adicionar novo pacote -->
+				<button
+					type="button"
+					class="btn btn-primary"
+					data-toggle="modal"
+					data-target="#adicionarModal">
+					Adicionar Novo Pacote
+				</button>
+			</div>
+		</div>
+
+		<!-- Modal de Adicionar -->
+		<div
+			class="modal fade"
+			id="adicionarModal"
+			tabindex="-1"
+			role="dialog"
+			aria-labelledby="adicionarModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="adicionarModalLabel">
+							Adicionar Novo Pacote de Hospedagem
+						</h5>
+						<button
+							type="button"
+							class="close"
+							data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form>
+							<div class="form-group">
+								<label for="nomePacote">Nome do Pacote</label>
+								<input
+									type="text"
+									class="form-control"
+									id="nomePacote"
+									placeholder="Digite o nome do pacote" />
+							</div>
+							<div class="form-group">
+								<label for="descricaoPacote"
+									>Descrição do Pacote</label
+								>
+								<textarea
+									class="form-control"
+									id="descricaoPacote"
+									rows="3"
+									placeholder="Descreva o pacote"></textarea>
+							</div>
+							<div class="form-group">
+								<label for="precoPacote">Preço por Noite</label>
+								<input
+									type="text"
+									class="form-control"
+									id="precoPacote"
+									placeholder="Digite o preço por noite" />
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-dismiss="modal">
+							Cancelar
+						</button>
+						<button type="button" class="btn btn-primary">
+							Adicionar Pacote
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal de Editar -->
+		<div
+			class="modal fade"
+			id="editarModal"
+			tabindex="-1"
+			role="dialog"
+			aria-labelledby="editarModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="editarModalLabel">
+							Editar Pacote de Hospedagem
+						</h5>
+						<button
+							type="button"
+							class="close"
+							data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						<form>
+							<div class="form-group">
+								<label for="editarNomePacote"
+									>Nome do Pacote</label
+								>
+								<input
+									type="text"
+									class="form-control"
+									id="editarNomePacote"
+									value="Pacote 1" />
+							</div>
+							<div class="form-group">
+								<label for="editarDescricaoPacote"
+									>Descrição do Pacote</label
+								>
+								<textarea
+									class="form-control"
+									id="editarDescricaoPacote"
+									rows="3">
+Descrição do Pacote 1</textarea
+								>
+							</div>
+							<div class="form-group">
+								<label for="editarPrecoPacote"
+									>Preço por Noite</label
+								>
+								<input
+									type="text"
+									class="form-control"
+									id="editarPrecoPacote"
+									value="R$ 100,00" />
+							</div>
+						</form>
+					</div>
+					<div class="modal-footer">
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-dismiss="modal">
+							Cancelar
+						</button>
+						<button type="button" class="btn btn-primary">
+							Salvar Alterações
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Modal de Excluir -->
+		<div
+			class="modal fade"
+			id="excluirModal"
+			tabindex="-1"
+			role="dialog"
+			aria-labelledby="excluirModalLabel"
+			aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<h5 class="modal-title" id="excluirModalLabel">
+							Excluir Pacote de Hospedagem
+						</h5>
+						<button
+							type="button"
+							class="close"
+							data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+					</div>
+					<div class="modal-body">
+						Tem certeza que deseja excluir este pacote de
+						hospedagem? Esta ação não pode ser desfeita.
+					</div>
+					<div class="modal-footer">
+						<button
+							type="button"
+							class="btn btn-secondary"
+							data-dismiss="modal">
+							Cancelar
+						</button>
+						<button type="button" class="btn btn-danger">
+							Confirmar Exclusão
+						</button>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<!-- Footer -->
+		<footer>
+			<p>
+				&copy; 2024 Albergue Santa Teresa. Todos os direitos reservados.
+			</p>
+		</footer>
+
+		<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+		<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+	</body>
+</html>
